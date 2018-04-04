@@ -43,6 +43,11 @@
 
         <!-- 数据库 -->
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
@@ -52,13 +57,20 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <!-- mybatis -->
 
-        <!-- 集成druid -->
+        <!-- 集成alibaba的druid数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
+            <version>1.1.9</version>
+        </dependency>
+        <!-- alibaba的druid数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.9</version>
         </dependency>
         <!-- 集成druid -->
@@ -70,6 +82,12 @@
             <version>4.0.9</version>
         </dependency>
 
+        <!-- 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
+        </dependency>
         <!-- 解析HTML -->
         <dependency>
             <groupId>org.jsoup</groupId>
@@ -104,6 +122,19 @@
                     </archive>
                 </configuration>
             </plugin>
+
+            <!-- mybatis generator 自动生成代码插件 -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
+
         </plugins>
         <!-- <finalName>gateway</finalName> -->
 
