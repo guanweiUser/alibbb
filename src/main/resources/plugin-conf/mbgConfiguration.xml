@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <!-- 第一种mybatis逆向生成xml配置 -->
 <generatorConfiguration>
-    <properties resource="jdbc.properties" />
+    <properties resource="plugin-conf/jdbc.properties" />
     <context id="sqlserverTables" targetRuntime="MyBatis3">
         <!-- 生成的pojo，将implements Serializable-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
@@ -52,8 +52,8 @@
 
         <!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
         <table tableName="ali_subject_record" domainObjectName="SubjectRecord"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false" >
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true" >
             <!--<property name="useActualColumnNames" value="false"/>-->
         </table>
     </context>
