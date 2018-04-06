@@ -1,5 +1,6 @@
 package com.springboot.alibb.web.controller;
 
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.springboot.alibb.service.ISubjectRecordService;
@@ -7,6 +8,7 @@ import com.springboot.alibb.web.vo.AppraisalVo;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import com.springboot.alibb.web.vo.SubjectRecordVo;
+import com.springboot.base.common.BaseController;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -23,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/appraisal")
-public class AppraisalController {
+public class AppraisalController extends BaseController {
 
     @Resource
     private ISubjectRecordService subjectRecordService;
@@ -45,6 +47,8 @@ public class AppraisalController {
         String callback = request.getParameter("callback");
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
+        String age = request.getParameter("age");
+        String sex = request.getParameter("sex");
 
         //抓取地址
         String url = "http://m.geilixinli.com/cs/result/";
@@ -70,8 +74,16 @@ public class AppraisalController {
 
         subjectRecordVo.setName(name);
         subjectRecordVo.setPhone(phone);
+
+        if(NumberUtil.isInteger(age)){
+            subjectRecordVo.setAge(Integer.valueOf(age));
+        }
+        subjectRecordVo.setSex(sex);
         subjectRecordVo.setResult(JSONUtil.parse(results2).toString());
 
+        subjectRecordVo.setIp(this.getIpAddr(request));
+
+        //添加信息到数据库
         subjectRecordService.addSubjectRecord(subjectRecordVo);
 
         return callback + "({'html':'"+s+"'})";

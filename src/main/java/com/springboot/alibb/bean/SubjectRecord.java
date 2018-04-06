@@ -20,6 +20,8 @@ public class SubjectRecord implements Serializable {
 
     private Date createTime;
 
+    private String ip;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -84,5 +86,13 @@ public class SubjectRecord implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip == null ? null : ip.trim();
     }
 }
