@@ -3,8 +3,11 @@ package com.springboot.alibb.mapper;
 import com.springboot.alibb.bean.SubjectRecord;
 import com.springboot.alibb.bean.SubjectRecordExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface SubjectRecordMapper {
     long countByExample(SubjectRecordExample example);
 

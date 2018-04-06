@@ -16,5 +16,5 @@ Class-Path: tomcat-embed-el-8.5.28.jar slf4j-api-1.7.25.jar log4j-to-s
  f4j-1.7.25.jar spring-webmvc-5.0.4.RELEASE.jar spring-web-5.0.4.RELEA
  SE.jar logback-classic-1.2.3.jar spring-boot-2.0.0.RELEASE.jar jackso
  n-annotations-2.9.0.jar spring-boot-starter-json-2.0.0.RELEASE.jar
-Main-Class: com.springboot.alibb.AlibbApplication
+Main-Class: com.springboot.AlibbApplication
 
