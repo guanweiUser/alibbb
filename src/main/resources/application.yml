@@ -1,0 +1,30 @@
+server:
+  port: 8010
+  session-timeout: 1800
+  tomcat:
+    max-threads: 0
+    uri-encoding: UTF-8
+    basedir: target/tomcat
+
+
+spring:
+  datasource:
+    url : jdbc:mysql://140.143.237.60:3306/alibb?useUnicode=true&characterEncoding=UTF-8
+    username : root
+    password : G278363604.
+    driverClassName : com.mysql.jdbc.Driver
+    # HTTP encoding (HttpEncodingProperties)
+    http:
+      encoding.charset: UTF-8
+      encoding.enabled: true
+      encoding.force: true
+
+#MYBATIS
+mybatis:
+  type-aliases-package: com.springboot.alibb.mapper
+  mapper-locations=classpath*: /mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    default-fetch-size: 100
+    default-statement-timeout: 30

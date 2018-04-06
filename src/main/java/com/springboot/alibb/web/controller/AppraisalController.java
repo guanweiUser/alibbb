@@ -1,6 +1,6 @@
-package com.springboot.alibb.controller;
+package com.springboot.alibb.web.controller;
 
-import com.springboot.alibb.bean.AppraisalVo;
+import com.springboot.alibb.web.vo.AppraisalVo;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import org.jsoup.Jsoup;

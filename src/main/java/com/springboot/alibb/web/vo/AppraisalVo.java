@@ -1,4 +1,4 @@
-package com.springboot.alibb.bean;
+package com.springboot.alibb.web.vo;
 
 /**
  * @program: spring-cloud-parent
