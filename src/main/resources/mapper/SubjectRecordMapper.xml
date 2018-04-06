@@ -11,6 +11,7 @@
     <result column="result" jdbcType="CHAR" property="result" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="ip" jdbcType="CHAR" property="ip" />
+    <result column="browser_info" jdbcType="VARCHAR" property="browserInfo" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, phone, sex, age, type, result, create_time, ip
+    id, name, phone, sex, age, type, result, create_time, ip, browser_info
   </sql>
   <select id="selectByExample" parameterType="com.springboot.alibb.bean.SubjectRecordExample" resultMap="BaseResultMap">
     select
@@ -107,10 +108,10 @@
   <insert id="insert" parameterType="com.springboot.alibb.bean.SubjectRecord">
     insert into ali_subject_record (id, name, phone, sex, 
       age, type, result, create_time, 
-      ip)
+      ip, browser_info)
     values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, 
       #{age,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{result,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{ip,jdbcType=CHAR})
+      #{ip,jdbcType=CHAR}, #{browserInfo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.springboot.alibb.bean.SubjectRecord">
     insert into ali_subject_record
@@ -142,6 +143,9 @@
       <if test="ip != null">
         ip,
       </if>
+      <if test="browserInfo != null">
+        browser_info,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -170,6 +174,9 @@
       </if>
       <if test="ip != null">
         #{ip,jdbcType=CHAR},
+      </if>
+      <if test="browserInfo != null">
+        #{browserInfo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -209,6 +216,9 @@
       <if test="record.ip != null">
         ip = #{record.ip,jdbcType=CHAR},
       </if>
+      <if test="record.browserInfo != null">
+        browser_info = #{record.browserInfo,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -224,7 +234,8 @@
       type = #{record.type,jdbcType=CHAR},
       result = #{record.result,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      ip = #{record.ip,jdbcType=CHAR}
+      ip = #{record.ip,jdbcType=CHAR},
+      browser_info = #{record.browserInfo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,6 +267,9 @@
       <if test="ip != null">
         ip = #{ip,jdbcType=CHAR},
       </if>
+      <if test="browserInfo != null">
+        browser_info = #{browserInfo,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -268,7 +282,8 @@
       type = #{type,jdbcType=CHAR},
       result = #{result,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      ip = #{ip,jdbcType=CHAR}
+      ip = #{ip,jdbcType=CHAR},
+      browser_info = #{browserInfo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

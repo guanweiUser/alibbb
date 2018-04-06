@@ -22,6 +22,8 @@ public class SubjectRecord implements Serializable {
 
     private String ip;
 
+    private String browserInfo;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -94,5 +96,13 @@ public class SubjectRecord implements Serializable {
 
     public void setIp(String ip) {
         this.ip = ip == null ? null : ip.trim();
+    }
+
+    public String getBrowserInfo() {
+        return browserInfo;
+    }
+
+    public void setBrowserInfo(String browserInfo) {
+        this.browserInfo = browserInfo == null ? null : browserInfo.trim();
     }
 }

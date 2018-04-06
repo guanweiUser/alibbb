@@ -81,8 +81,26 @@ public class AppraisalController extends BaseController {
         subjectRecordVo.setSex(sex);
         subjectRecordVo.setResult(JSONUtil.parse(results2).toString());
 
+
         subjectRecordVo.setIp(this.getIpAddr(request));
 
+        StringBuilder sb = new StringBuilder();
+        String agent=request.getHeader("User-Agent").toLowerCase();
+
+        sb.append("User-Agent：");
+        sb.append(agent);
+
+        //客户端电脑的名字
+        String remoteHost = request.getRemoteHost();
+        sb.append("；remoteHost：");
+        sb.append(remoteHost);
+
+        String remoteAddr = request.getRemoteAddr();
+        sb.append("；remoteAddr：");
+        sb.append(remoteAddr);
+
+
+        subjectRecordVo.setBrowserInfo(sb.toString());
         //添加信息到数据库
         subjectRecordService.addSubjectRecord(subjectRecordVo);
 

@@ -714,6 +714,76 @@ public class SubjectRecordExample {
             addCriterion("ip not between", value1, value2, "ip");
             return (Criteria) this;
         }
+
+        public Criteria andBrowserInfoIsNull() {
+            addCriterion("browser_info is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoIsNotNull() {
+            addCriterion("browser_info is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoEqualTo(String value) {
+            addCriterion("browser_info =", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoNotEqualTo(String value) {
+            addCriterion("browser_info <>", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoGreaterThan(String value) {
+            addCriterion("browser_info >", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoGreaterThanOrEqualTo(String value) {
+            addCriterion("browser_info >=", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoLessThan(String value) {
+            addCriterion("browser_info <", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoLessThanOrEqualTo(String value) {
+            addCriterion("browser_info <=", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoLike(String value) {
+            addCriterion("browser_info like", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoNotLike(String value) {
+            addCriterion("browser_info not like", value, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoIn(List<String> values) {
+            addCriterion("browser_info in", values, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoNotIn(List<String> values) {
+            addCriterion("browser_info not in", values, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoBetween(String value1, String value2) {
+            addCriterion("browser_info between", value1, value2, "browserInfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andBrowserInfoNotBetween(String value1, String value2) {
+            addCriterion("browser_info not between", value1, value2, "browserInfo");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
