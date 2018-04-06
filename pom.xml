@@ -86,7 +86,7 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.1.2</version>
+            <version>1.2.3</version>
         </dependency>
         <!-- 解析HTML -->
         <dependency>
@@ -148,6 +148,7 @@
 
         </plugins>
         <!-- <finalName>gateway</finalName> -->
+
 
     </build>
 

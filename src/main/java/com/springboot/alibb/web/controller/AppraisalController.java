@@ -1,13 +1,18 @@
 package com.springboot.alibb.web.controller;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
+import com.springboot.alibb.service.ISubjectRecordService;
 import com.springboot.alibb.web.vo.AppraisalVo;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
+import com.springboot.alibb.web.vo.SubjectRecordVo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -20,16 +25,26 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/appraisal")
 public class AppraisalController {
 
+    @Resource
+    private ISubjectRecordService subjectRecordService;
 
+    /**
+     * 1提交测评
+     * 2返回测评结果
+     * @param request
+     * @return
+     */
     @RequestMapping("/result")
     public String result(HttpServletRequest request) {
 
 
-
-
-
+        //测评选项
         String[] results2 = request.getParameterValues("result[]");
+
+        //jsonp
         String callback = request.getParameter("callback");
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
 
         //抓取地址
         String url = "http://m.geilixinli.com/cs/result/";
@@ -50,6 +65,15 @@ public class AppraisalController {
         Elements r_info = html.getElementsByClass("r_info");
         String s = r_info.html().toString().replaceAll("<", "@xiaoyu").replaceAll(">", "@dayu").replaceAll("\r|\n", "");
 //        return callback + "{'html':'" + r_info.html() + "'}";
+
+        SubjectRecordVo subjectRecordVo = new SubjectRecordVo();
+
+        subjectRecordVo.setName(name);
+        subjectRecordVo.setPhone(phone);
+        subjectRecordVo.setResult(JSONUtil.parse(results2).toString());
+
+        subjectRecordService.addSubjectRecord(subjectRecordVo);
+
         return callback + "({'html':'"+s+"'})";
     }
 
