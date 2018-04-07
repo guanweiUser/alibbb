@@ -8,7 +8,7 @@
 <meta content="临汾市心理卫生协会" name="keywords">  
 <link type="text/css" rel="stylesheet" href="./lfxlcsxh/cs.css">
   <link rel="stylesheet" href="./lfxlcsxh/lightbox.css">
-<script src="./lfxlcsxh/hm.js"></script><script src="./lfxlcsxh/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="./lfxlcsxh/hm.js"></script><script src="https://cdn.bootcss.com/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 
     </head>
 <body>
@@ -21,6 +21,8 @@
     </div>    <div class="q_content" style="margin-top: 34px;">
 		<!-- 提交表单 -->
         <form action="http://localhost:8080/appraisal/result" method="post" id="testform">
+		<!-- 题型类型 -->
+		<input type="hidden" name="subjectType" value="geilixinli_90" >
         <div class="q_title">十项症状自评量表SCL90【临汾市心理卫生协会】</div>
         <div class="q_qita">参与：488003 完成：287250 赞：62987 踩：2330</div>
 
@@ -1142,7 +1144,7 @@ function login() {
 	//几个参数需要注意一下
 		type: "POST",//方法类型
 		dataType: "jsonp",//预期服务器返回的数据类型
-		url: "http://alibb.6655.la:8010/appraisal/result" ,//url
+		url: "http://140.143.237.60:8010/appraisal/result" ,//url
 		data: $('#testform').serialize(),
 		success: function (result) {
 			//console.log(result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>'));//打印服务端返回的数据(调试用)
