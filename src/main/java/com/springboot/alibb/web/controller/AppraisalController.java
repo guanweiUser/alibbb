@@ -82,7 +82,7 @@ public class AppraisalController extends BaseController {
 
         JSONObject jsonResult = new JSONObject();
         jsonResult.put("select", results2);
-        jsonResult.put("result", r_info);
+        jsonResult.put("result", r_info.html());
         subjectRecordVo.setResult(jsonResult.toString());
 
 
