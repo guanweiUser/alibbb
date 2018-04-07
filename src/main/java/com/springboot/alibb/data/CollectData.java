@@ -3,9 +3,14 @@ package com.springboot.alibb.data;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
+import com.springboot.alibb.web.vo.AppraisalVo;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.nio.charset.Charset;
 
 /**
  * @program: spring-cloud-parent
@@ -22,43 +27,29 @@ public class CollectData {
 
 
     public static void main(String[] args) {
+        String s = HttpUtil.get("http://www.apesk.com/pressure/ylcs_report.asp?id=22992", Charset.forName("GB2312"));
 
-        String result = CollectData.xinliceping();
-        System.out.println(result);
-
-
+        System.out.println(s);
     }
 
 
     /**
-     *
+     * 给力心理测评
      * @return
      */
-    public static String xinliceping() {
+    public static String geilixinliResult(String[] results2) {
 
         //抓取地址
         String url = "http://m.geilixinli.com/cs/result/";
-
-        String body = "result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=2&result[]=2&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=1&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=3&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=4&result[]=2&result[]=3&subjectid=27&counttype=3&taskid=0&groupid=0&qyid=0&testuserinfo=";
-
         //参数
         JSONObject paramMap = new JSONObject();
-
-        JSONArray resultsParam = new JSONArray();
-        for (int i = 0; i < 90; i++){
-            int inx = (int)(1+Math.random()*(5));
-//            System.out.println(inx);
-            resultsParam.add(inx);
-        }
-
-
-        paramMap.put("result[]",resultsParam);
+        AppraisalVo appraisalVo = new AppraisalVo();
+        paramMap.put("result[]",results2);
         paramMap.put("subjectid",27);
         paramMap.put("counttype",3);
         paramMap.put("taskid",0);
         paramMap.put("groupid",0);
         paramMap.put("qyid",0);
-
 
         String result = HttpUtil.post(url, paramMap);
 
@@ -68,4 +59,73 @@ public class CollectData {
 
         return r_info.html();
     }
+
+
+    /**
+     * http://www.apesk.com/pressure/
+     * @return
+     */
+    public static String pressureResult(JSONObject paramMap) {
+
+        //抓取地址
+        String url = "http://www.apesk.com/pressure/ylcs_submit.asp";
+
+        //提交表单  302跳转
+        String result = HttpUtil.post(url, paramMap);
+
+        Document html = Jsoup.parse(result);
+        //获取302跳转的路径
+        String attr = html.getElementsByTag("a").attr("href");
+
+        //访问改路径
+        String s = HttpUtil.get("http://www.apesk.com/pressure/" + attr, Charset.forName("GB2312"));
+
+        Document parse = Jsoup.parse(s);
+        Elements iframe = parse.getElementsByTag("iframe");
+
+        for (int i = 0; i < iframe.size(); i++) {
+
+            Element e = iframe.get(i);
+
+            String src = e.attr("src");
+            if(src.indexOf("report_logo_m.asp") != -1 || src.indexOf("report_right.asp") != -1){
+                e.attr("src", "#");
+                e.remove();
+//                iframe.remove(i);
+//                i--;
+            }else{
+
+                e.attr("src", "http://www.apesk.com" + e.attr("src"));
+            }
+        }
+
+        Elements links = parse.getElementsByTag("link");
+        for (int i = 0; i < links.size(); i++) {
+
+            Element e = links.get(i);
+            e.attr("href", "http://www.apesk.com" + e.attr("href"));
+        }
+
+        Elements scripts = parse.getElementsByTag("script");
+        for (int i = 0; i < scripts.size(); i++) {
+
+            Element e = scripts.get(i);
+            e.attr("src", "http://www.apesk.com" + e.attr("src"));
+        }
+
+        return parse.html().replaceAll("/mmpi", "http://140.143.237.60:8080/lfxlcsxh.htm").replaceAll("MMPI明尼苏达心理评估量表", "十项症状自评量表SCL90【临汾市心理卫生协会】").replaceAll("报告接收人:才储YLCS成员", "");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -3,6 +3,7 @@ package com.springboot.alibb.web.controller;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
+import com.springboot.alibb.data.CollectData;
 import com.springboot.alibb.service.ISubjectRecordService;
 import com.springboot.alibb.web.vo.AppraisalVo;
 import cn.hutool.http.HttpUtil;
@@ -39,39 +40,63 @@ public class AppraisalController extends BaseController {
     @RequestMapping("/result")
     public String result(HttpServletRequest request) {
 
+        //最终返回结果
+        String resultHtml = "";
 
-        //测评选项
-        String[] results2 = request.getParameterValues("result[]");
+        //题型
+        String subjectType = request.getParameter("subjectType");
+        String s = null;
 
-        //jsonp
-        String callback = request.getParameter("callback");
+        //json提报以及结果信息
+        JSONObject jsonResult = new JSONObject();
+        switch (subjectType){
+
+            case "geilixinli_90" :  //给力心理90道题
+                //测评选项
+                String[] results2 = request.getParameterValues("result[]");
+                //获取结果
+                String r_info = CollectData.geilixinliResult(results2);
+                s = r_info.replaceAll("<", "@xiaoyu").replaceAll(">", "@dayu").replaceAll("\r|\n", "");
+
+                //存储结果信息
+                jsonResult.put("select", results2);
+                jsonResult.put("result", r_info);
+                //jsonp
+                String callback = request.getParameter("callback");
+                resultHtml = callback + "({'html':'"+s+"'})";
+                break;
+
+
+            case "pressure_PSTR" :
+                //参数
+                JSONObject paramMap = new JSONObject();
+                for (int i = 1; i <= 50; i++){
+                    String rd = request.getParameter("Rd_" + i);
+                    paramMap.put("Rd_" + i, rd);
+                }
+
+                paramMap.put("tishu", 50);
+                String s1 = CollectData.pressureResult(paramMap);
+                resultHtml = s1;
+                //存储结果信息
+                jsonResult.put("select", paramMap);
+                jsonResult.put("result", resultHtml);
+                break;
+
+        }
+
+
+
+        //获取填报的基础信息
         String name = request.getParameter("name");
         String phone = request.getParameter("phone");
         String age = request.getParameter("age");
         String sex = request.getParameter("sex");
 
-        //抓取地址
-        String url = "http://m.geilixinli.com/cs/result/";
-        //参数
-        JSONObject paramMap = new JSONObject();
-        AppraisalVo appraisalVo = new AppraisalVo();
-        paramMap.put("result[]",results2);
-        paramMap.put("subjectid",27);
-        paramMap.put("counttype",3);
-        paramMap.put("taskid",0);
-        paramMap.put("groupid",0);
-        paramMap.put("qyid",0);
-
-        String result = HttpUtil.post(url, paramMap);
-
-        Document html = Jsoup.parse(result);
-
-        Elements r_info = html.getElementsByClass("r_info");
-        String s = r_info.html().toString().replaceAll("<", "@xiaoyu").replaceAll(">", "@dayu").replaceAll("\r|\n", "");
-//        return callback + "{'html':'" + r_info.html() + "'}";
 
         SubjectRecordVo subjectRecordVo = new SubjectRecordVo();
 
+        subjectRecordVo.setType(subjectType);
         subjectRecordVo.setName(name);
         subjectRecordVo.setPhone(phone);
 
@@ -80,17 +105,15 @@ public class AppraisalController extends BaseController {
         }
         subjectRecordVo.setSex(sex);
 
-        JSONObject jsonResult = new JSONObject();
-        jsonResult.put("select", results2);
-        jsonResult.put("result", r_info.html());
+
+        //存储提报以及结果信息
         subjectRecordVo.setResult(jsonResult.toString());
 
 
+        //浏览器信息
         subjectRecordVo.setIp(this.getIpAddr(request));
-
         StringBuilder sb = new StringBuilder();
         String agent=request.getHeader("User-Agent").toLowerCase();
-
         sb.append("User-Agent：");
         sb.append(agent);
 
@@ -108,7 +131,7 @@ public class AppraisalController extends BaseController {
         //添加信息到数据库
         subjectRecordService.addSubjectRecord(subjectRecordVo);
 
-        return callback + "({'html':'"+s+"'})";
+        return resultHtml;
     }
 
 
