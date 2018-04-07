@@ -79,7 +79,11 @@ public class AppraisalController extends BaseController {
             subjectRecordVo.setAge(Integer.valueOf(age));
         }
         subjectRecordVo.setSex(sex);
-        subjectRecordVo.setResult(JSONUtil.parse(results2).toString());
+
+        JSONObject jsonResult = new JSONObject();
+        jsonResult.put("select", results2);
+        jsonResult.put("result", r_info);
+        subjectRecordVo.setResult(jsonResult.toString());
 
 
         subjectRecordVo.setIp(this.getIpAddr(request));
