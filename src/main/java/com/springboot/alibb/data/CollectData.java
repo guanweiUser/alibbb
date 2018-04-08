@@ -114,7 +114,7 @@ public class CollectData {
             e.attr("src", "http://www.apesk.com" + e.attr("src"));
         }
 
-        return parse.html().replaceAll("/mmpi", "http://140.143.237.60:8080/lfxlcsxh.htm").replaceAll("MMPI明尼苏达心理评估量表", "十项症状自评量表SCL90【临汾市心理卫生协会】").replaceAll("报告接收人:才储YLCS成员", "");
+        return parse.html().replaceAll("报告接收人:才储YLCS成员", "");
     }
 
 

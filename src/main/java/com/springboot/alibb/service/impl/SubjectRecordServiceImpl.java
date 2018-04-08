@@ -83,7 +83,9 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
 
                 paramMap.put("tishu", 50);
                 String s1 = CollectData.pressureResult(paramMap);
-                resultHtml = s1;
+
+                resultHtml = s1.replaceAll("/mmpi", "http://140.143.237.60:8020/appraisal/lfxlcsxh.htm?ditch=" + subjectRecordVo.getDitch()).replaceAll("MMPI明尼苏达心理评估量表", "十项症状自评量表SCL90");
+
                 //存储结果信息
                 jsonResult.put("select", paramMap);
                 jsonResult.put("result", resultHtml);
