@@ -175,6 +175,146 @@ public class SubjectRecordExample {
             return (Criteria) this;
         }
 
+        public Criteria andDitchIsNull() {
+            addCriterion("ditch is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchIsNotNull() {
+            addCriterion("ditch is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchEqualTo(String value) {
+            addCriterion("ditch =", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchNotEqualTo(String value) {
+            addCriterion("ditch <>", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchGreaterThan(String value) {
+            addCriterion("ditch >", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchGreaterThanOrEqualTo(String value) {
+            addCriterion("ditch >=", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchLessThan(String value) {
+            addCriterion("ditch <", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchLessThanOrEqualTo(String value) {
+            addCriterion("ditch <=", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchLike(String value) {
+            addCriterion("ditch like", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchNotLike(String value) {
+            addCriterion("ditch not like", value, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchIn(List<String> values) {
+            addCriterion("ditch in", values, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchNotIn(List<String> values) {
+            addCriterion("ditch not in", values, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchBetween(String value1, String value2) {
+            addCriterion("ditch between", value1, value2, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andDitchNotBetween(String value1, String value2) {
+            addCriterion("ditch not between", value1, value2, "ditch");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLike(String value) {
+            addCriterion("type like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotLike(String value) {
+            addCriterion("type not like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(String value1, String value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(String value1, String value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;
@@ -445,76 +585,6 @@ public class SubjectRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeEqualTo(String value) {
-            addCriterion("type =", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotEqualTo(String value) {
-            addCriterion("type <>", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeGreaterThan(String value) {
-            addCriterion("type >", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("type >=", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLessThan(String value) {
-            addCriterion("type <", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLessThanOrEqualTo(String value) {
-            addCriterion("type <=", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeLike(String value) {
-            addCriterion("type like", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotLike(String value) {
-            addCriterion("type not like", value, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeIn(List<String> values) {
-            addCriterion("type in", values, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotIn(List<String> values) {
-            addCriterion("type not in", values, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeBetween(String value1, String value2) {
-            addCriterion("type between", value1, value2, "type");
-            return (Criteria) this;
-        }
-
-        public Criteria andTypeNotBetween(String value1, String value2) {
-            addCriterion("type not between", value1, value2, "type");
-            return (Criteria) this;
-        }
-
         public Criteria andResultIsNull() {
             addCriterion("result is null");
             return (Criteria) this;
@@ -712,76 +782,6 @@ public class SubjectRecordExample {
 
         public Criteria andIpNotBetween(String value1, String value2) {
             addCriterion("ip not between", value1, value2, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoIsNull() {
-            addCriterion("browser_info is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoIsNotNull() {
-            addCriterion("browser_info is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoEqualTo(String value) {
-            addCriterion("browser_info =", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoNotEqualTo(String value) {
-            addCriterion("browser_info <>", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoGreaterThan(String value) {
-            addCriterion("browser_info >", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoGreaterThanOrEqualTo(String value) {
-            addCriterion("browser_info >=", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoLessThan(String value) {
-            addCriterion("browser_info <", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoLessThanOrEqualTo(String value) {
-            addCriterion("browser_info <=", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoLike(String value) {
-            addCriterion("browser_info like", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoNotLike(String value) {
-            addCriterion("browser_info not like", value, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoIn(List<String> values) {
-            addCriterion("browser_info in", values, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoNotIn(List<String> values) {
-            addCriterion("browser_info not in", values, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoBetween(String value1, String value2) {
-            addCriterion("browser_info between", value1, value2, "browserInfo");
-            return (Criteria) this;
-        }
-
-        public Criteria andBrowserInfoNotBetween(String value1, String value2) {
-            addCriterion("browser_info not between", value1, value2, "browserInfo");
             return (Criteria) this;
         }
     }

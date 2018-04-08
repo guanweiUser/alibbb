@@ -6,6 +6,10 @@ import java.util.Date;
 public class SubjectRecord implements Serializable {
     private String id;
 
+    private String ditch;
+
+    private String type;
+
     private String name;
 
     private String phone;
@@ -13,8 +17,6 @@ public class SubjectRecord implements Serializable {
     private String sex;
 
     private Integer age;
-
-    private String type;
 
     private String result;
 
@@ -32,6 +34,22 @@ public class SubjectRecord implements Serializable {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
+    }
+
+    public String getDitch() {
+        return ditch;
+    }
+
+    public void setDitch(String ditch) {
+        this.ditch = ditch == null ? null : ditch.trim();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
     }
 
     public String getName() {
@@ -64,14 +82,6 @@ public class SubjectRecord implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
     }
 
     public String getResult() {

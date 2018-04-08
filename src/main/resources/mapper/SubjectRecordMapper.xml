@@ -3,15 +3,18 @@
 <mapper namespace="com.springboot.alibb.mapper.SubjectRecordMapper">
   <resultMap id="BaseResultMap" type="com.springboot.alibb.bean.SubjectRecord">
     <id column="id" jdbcType="CHAR" property="id" />
+    <result column="ditch" jdbcType="CHAR" property="ditch" />
+    <result column="type" jdbcType="CHAR" property="type" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="CHAR" property="phone" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="type" jdbcType="CHAR" property="type" />
     <result column="result" jdbcType="CHAR" property="result" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="ip" jdbcType="CHAR" property="ip" />
-    <result column="browser_info" jdbcType="VARCHAR" property="browserInfo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.springboot.alibb.bean.SubjectRecord">
+    <result column="browser_info" jdbcType="LONGVARCHAR" property="browserInfo" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +75,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, phone, sex, age, type, result, create_time, ip, browser_info
+    id, ditch, type, name, phone, sex, age, result, create_time, ip
   </sql>
+  <sql id="Blob_Column_List">
+    browser_info
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.springboot.alibb.bean.SubjectRecordExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ali_subject_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.springboot.alibb.bean.SubjectRecordExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -89,9 +112,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from ali_subject_record
     where id = #{id,jdbcType=CHAR}
   </select>
@@ -106,18 +131,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.springboot.alibb.bean.SubjectRecord">
-    insert into ali_subject_record (id, name, phone, sex, 
-      age, type, result, create_time, 
-      ip, browser_info)
-    values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, 
-      #{age,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{result,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{ip,jdbcType=CHAR}, #{browserInfo,jdbcType=VARCHAR})
+    insert into ali_subject_record (id, ditch, type, name, 
+      phone, sex, age, result, 
+      create_time, ip, browser_info
+      )
+    values (#{id,jdbcType=CHAR}, #{ditch,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=CHAR}, #{sex,jdbcType=CHAR}, #{age,jdbcType=INTEGER}, #{result,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=CHAR}, #{browserInfo,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.springboot.alibb.bean.SubjectRecord">
     insert into ali_subject_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="ditch != null">
+        ditch,
+      </if>
+      <if test="type != null">
+        type,
       </if>
       <if test="name != null">
         name,
@@ -130,9 +163,6 @@
       </if>
       <if test="age != null">
         age,
-      </if>
-      <if test="type != null">
-        type,
       </if>
       <if test="result != null">
         result,
@@ -151,6 +181,12 @@
       <if test="id != null">
         #{id,jdbcType=CHAR},
       </if>
+      <if test="ditch != null">
+        #{ditch,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -163,9 +199,6 @@
       <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
-      </if>
       <if test="result != null">
         #{result,jdbcType=CHAR},
       </if>
@@ -176,7 +209,7 @@
         #{ip,jdbcType=CHAR},
       </if>
       <if test="browserInfo != null">
-        #{browserInfo,jdbcType=VARCHAR},
+        #{browserInfo,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -192,6 +225,12 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=CHAR},
       </if>
+      <if test="record.ditch != null">
+        ditch = #{record.ditch,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=CHAR},
+      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -204,9 +243,6 @@
       <if test="record.age != null">
         age = #{record.age,jdbcType=INTEGER},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=CHAR},
-      </if>
       <if test="record.result != null">
         result = #{record.result,jdbcType=CHAR},
       </if>
@@ -217,9 +253,26 @@
         ip = #{record.ip,jdbcType=CHAR},
       </if>
       <if test="record.browserInfo != null">
-        browser_info = #{record.browserInfo,jdbcType=VARCHAR},
+        browser_info = #{record.browserInfo,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ali_subject_record
+    set id = #{record.id,jdbcType=CHAR},
+      ditch = #{record.ditch,jdbcType=CHAR},
+      type = #{record.type,jdbcType=CHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=CHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      age = #{record.age,jdbcType=INTEGER},
+      result = #{record.result,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      ip = #{record.ip,jdbcType=CHAR},
+      browser_info = #{record.browserInfo,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,15 +280,15 @@
   <update id="updateByExample" parameterType="map">
     update ali_subject_record
     set id = #{record.id,jdbcType=CHAR},
+      ditch = #{record.ditch,jdbcType=CHAR},
+      type = #{record.type,jdbcType=CHAR},
       name = #{record.name,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=CHAR},
       sex = #{record.sex,jdbcType=CHAR},
       age = #{record.age,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=CHAR},
       result = #{record.result,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      ip = #{record.ip,jdbcType=CHAR},
-      browser_info = #{record.browserInfo,jdbcType=VARCHAR}
+      ip = #{record.ip,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -243,6 +296,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.springboot.alibb.bean.SubjectRecord">
     update ali_subject_record
     <set>
+      <if test="ditch != null">
+        ditch = #{ditch,jdbcType=CHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -255,9 +314,6 @@
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=CHAR},
-      </if>
       <if test="result != null">
         result = #{result,jdbcType=CHAR},
       </if>
@@ -268,22 +324,36 @@
         ip = #{ip,jdbcType=CHAR},
       </if>
       <if test="browserInfo != null">
-        browser_info = #{browserInfo,jdbcType=VARCHAR},
+        browser_info = #{browserInfo,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.springboot.alibb.bean.SubjectRecord">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.springboot.alibb.bean.SubjectRecord">
     update ali_subject_record
-    set name = #{name,jdbcType=VARCHAR},
+    set ditch = #{ditch,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=CHAR},
       sex = #{sex,jdbcType=CHAR},
       age = #{age,jdbcType=INTEGER},
-      type = #{type,jdbcType=CHAR},
       result = #{result,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       ip = #{ip,jdbcType=CHAR},
-      browser_info = #{browserInfo,jdbcType=VARCHAR}
+      browser_info = #{browserInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.alibb.bean.SubjectRecord">
+    update ali_subject_record
+    set ditch = #{ditch,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      result = #{result,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      ip = #{ip,jdbcType=CHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>
