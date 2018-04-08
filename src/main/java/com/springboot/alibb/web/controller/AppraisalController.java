@@ -1,6 +1,7 @@
 package com.springboot.alibb.web.controller;
 
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.springboot.alibb.data.CollectData;
@@ -46,6 +47,17 @@ public class AppraisalController extends BaseController {
         //题型
         String subjectType = request.getParameter("subjectType");
         String s = null;
+
+        if(StrUtil.isBlank(subjectType)){
+            //测评选项
+            String[] results2 = request.getParameterValues("result[]");
+            String rd = request.getParameter("Rd_1");
+            if(results2 != null && results2.length >= 1){
+                subjectType = "geilixinli_90";
+            }else if(StrUtil.isNotBlank(rd)){
+                subjectType = "pressure_PSTR";
+            }
+        }
 
         //json提报以及结果信息
         JSONObject jsonResult = new JSONObject();
