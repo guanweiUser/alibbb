@@ -27,4 +27,24 @@ public class BaseController {
         return ip;
     }
 
+    /**
+     * 获取浏览器信息
+      * @param request
+     * @return
+     */
+    public String getBrowserInfo(HttpServletRequest request) {
+        StringBuilder sb = new StringBuilder();
+        String agent = request.getHeader("User-Agent").toLowerCase();
+        sb.append("User-Agent：");
+        sb.append(agent);
+        //客户端电脑的名字
+        String remoteHost = request.getRemoteHost();
+        sb.append("；remoteHost：");
+        sb.append(remoteHost);
+        String remoteAddr = request.getRemoteAddr();
+        sb.append("；remoteAddr：");
+        sb.append(remoteAddr);
+        return sb.toString();
+    }
+
 }

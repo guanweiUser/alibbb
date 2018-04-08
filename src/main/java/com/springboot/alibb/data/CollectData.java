@@ -11,6 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * @program: spring-cloud-parent
@@ -37,14 +38,14 @@ public class CollectData {
      * 给力心理测评
      * @return
      */
-    public static String geilixinliResult(String[] results2) {
+    public static String geilixinliResult(List<String> userResult) {
 
         //抓取地址
         String url = "http://m.geilixinli.com/cs/result/";
         //参数
         JSONObject paramMap = new JSONObject();
         AppraisalVo appraisalVo = new AppraisalVo();
-        paramMap.put("result[]",results2);
+        paramMap.put("result[]",userResult);
         paramMap.put("subjectid",27);
         paramMap.put("counttype",3);
         paramMap.put("taskid",0);
