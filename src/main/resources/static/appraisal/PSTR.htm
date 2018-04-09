@@ -2141,13 +2141,32 @@
 			<div id="divSubmit" style="display:none; margin-top:20px;">
 				<p align="center">
 					<link rel="stylesheet" href="./PSTR_files/button.css">
-					<input name="submit" type="submit" value=" 提  交 " class="b-btn">
+					<input name="submit" type="button" id="submit" value=" 提  交 " class="b-btn">
 					<input type="hidden" id="CurNum" value="0">
 					<input name="tishu" id="tishu" value="50" type="hidden">
 				</p>
 			</div>
 		</form>
 		<script type="text/javascript">
+		
+			function submit() {
+				$.ajax({
+				//几个参数需要注意一下
+					type: "POST",//方法类型
+					dataType: "jsonp",//预期服务器返回的数据类型
+					url: "http://140.143.237.60:8010/appraisal/result" ,//url
+					data: $('#form1').serialize(),
+					success: function (result) {
+						//console.log(result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>'));//打印服务端返回的数据(调试用)
+						//$('.q_info').remove();
+						//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
+						//flag = true;
+						$('html').html(result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>').replace(/@danyinhao/g, "'"));
+						
+					}
+				});
+			}
+		
 			$(function() {
 				var test_email = $("#test_email").val();
 				var test_name = $("#test_name").val();
@@ -2159,6 +2178,11 @@
 				{
 					$("#Part1").css("display", "block");
 				}
+				
+				$('#submit').click(function(){
+					submit();
+				})
+				
 			})
 			var LOCK_TIME = 900;
 			var lastClick = (new Date()).getTime();
