@@ -1,24 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0030)http://www.apesk.com/pressure/ -->
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		  <meta charset="UTF-8">
     <meta name="content-type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.8.0/jquery-1.8.0.min.js"></script>
-		<title>临汾市心理卫生协会-PSTR心理压力测试</title>
+		<script src="../common/utils/commonUtils.js" type="text/javascript"></script>
+		<title>PSTR心理压力测试</title>
 		<link rel="stylesheet" type="text/css" href="./PSTR_files/testNew.css">
 	<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"],a[href*="cpro.baidu.com"],a[href*="@"][href*=".exe"],a[href*="/?/"][href*=".exe"],.adpushwin{display:none!important;max-width:0!important;max-height:0!important;overflow:hidden!important;}</style></head>
 	
 
 	<body class="w-body" style="max-width: 800px; margin: 0px auto; background-color: rgb(246, 244, 236);">
-		<form id="form1" name="form1" method="post" action="http://140.143.237.60:8010/appraisal/result" onkeydown="if(event.keyCode==13){return false;}">
+		<form id="form1" name="form1" method="post" action="http://140.143.237.60:8010/appraisal/result" onsubmit="return CheckPost();" onkeydown="if(event.keyCode==13){return false;}">
 			<!-- 题型类型 -->
 			<input type="hidden" name="subjectType" value="pressure_PSTR" >
+			<!-- 渠道 -->
+			<input type="hidden" name="ditch" id="ditch" value="lfsxlwsxh" >
+			
 			<input name="hr_email" value="" type="hidden">
 			 
 			<div align="center"> <br>
-				<h3 align="center">临汾市心理卫生协会-PSTR心理压力测试</h3>
+				<h3 id="centerText" align="center">PSTR心理压力测试</h3>
 			</div>
 			<center>
 				<div align="left">
@@ -30,7 +33,31 @@
 				</div>
 			</center>
 			<center>
-				
+
+<script>
+
+	//获取渠道参数
+	var ditch = GetQueryString('ditch');
+	//lfsxlwsxh = 临汾市心理卫生协会
+	//xlk = 心理科
+	//根据渠道判断展示的名称
+	if(ditch){
+		var showText = "";
+		switch(ditch){
+			case 'xlk':
+			showText = '心理科'
+			break;
+			case 'lfsxlwsxh':
+			showText = '临汾市心理卫生协会'
+			break;
+		}
+		$('title').text('PSTR心理压力测试【' + showText + '】');
+		$('#centerText').text('PSTR心理压力测试【' + showText + '】');
+		$('#ditch').val(ditch);
+	}
+	
+</script> 
+			
 <div id="Part0" style="display: block;">
 	<div style="width:90%; margin:0 auto; padding:2rem 0 0 0;font:16px/1em Droid Sans sans-serif;">
         <table border="0" style="max-width:100%; margin:0 auto">
@@ -52,7 +79,7 @@
           </tr>
 		  
           <tr style="height:2.5rem">
-            <td colspan="2"><span style="line-height:1.5">PSTR量表由瑞士心理学家爱德沃兹于1983年编制，以德国心理学家穆瑞在1968年提出的心理压力因素理论为基础。适度的压力有助于提高工作效率，但过度的压力会使得工作效果适得其反，严重的时候会影响身体健康。你所承受的压力是否过大？以及你现在承受的压力比多少比例的人要高？可以试试经典的APESK-PSTR心理压力量表。</span><br>
+            <td colspan="2"><span style="line-height:1.5">PSTR量表由瑞士心理学家爱德沃兹于1983年编制，以德国心理学家穆瑞在1968年提出的心理压力因素理论为基础。适度的压力有助于提高工作效率，但过度的压力会使得工作效果适得其反，严重的时候会影响身体健康。你所承受的压力是否过大？以及你现在承受的压力比多少比例的人要高？可以试试经典的PSTR心理压力量表。</span><br>
 <input name="" type="button" value="请真实自然的进入" onclick="Next()" class="green button"></td>
           </tr>
         </tbody></table>
@@ -69,31 +96,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_1-1">
-                 <input class="radio" name="Rd_1" id="Rd_1-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_1-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_1-2">
-                 <input class="radio" name="Rd_1" id="Rd_1-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_1-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_1-3">
-                 <input class="radio" name="Rd_1" id="Rd_1-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_1-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_1-4">
-                 <input class="radio" name="Rd_1" id="Rd_1-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_1-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少</span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_1-5">
-                 <input class="radio" name="Rd_1" id="Rd_1-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_1-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未</span></span>
              </label>
 							</li>
@@ -110,31 +137,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_2-1">
-                 <input class="radio" name="Rd_2" id="Rd_2-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_2-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_2-2">
-                 <input class="radio" name="Rd_2" id="Rd_2-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_2-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_2-3">
-                 <input class="radio" name="Rd_2" id="Rd_2-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_2-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_2-4">
-                 <input class="radio" name="Rd_2" id="Rd_2-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_2-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少</span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_2-5">
-                 <input class="radio" name="Rd_2" id="Rd_2-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_2-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未</span></span>
              </label>
 							</li>
@@ -151,31 +178,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_3-1">
-                 <input class="radio" name="Rd_3" id="Rd_3-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_3-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_3-2">
-                 <input class="radio" name="Rd_3" id="Rd_3-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_3-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_3-3">
-                 <input class="radio" name="Rd_3" id="Rd_3-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_3-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_3-4">
-                 <input class="radio" name="Rd_3" id="Rd_3-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_3-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少</span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_3-5">
-                 <input class="radio" name="Rd_3" id="Rd_3-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_3-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未</span></span>
              </label>
 							</li>
@@ -192,31 +219,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_4-1">
-                 <input class="radio" name="Rd_4" id="Rd_4-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_4-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_4-2">
-                 <input class="radio" name="Rd_4" id="Rd_4-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_4-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_4-3">
-                 <input class="radio" name="Rd_4" id="Rd_4-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_4-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_4-4">
-                 <input class="radio" name="Rd_4" id="Rd_4-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_4-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_4-5">
-                 <input class="radio" name="Rd_4" id="Rd_4-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_4-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -233,31 +260,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_5-1">
-                 <input class="radio" name="Rd_5" id="Rd_5-1" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_5-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_5-2">
-                 <input class="radio" name="Rd_5" id="Rd_5-2" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_5-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_5-3">
-                 <input class="radio" name="Rd_5" id="Rd_5-3" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_5-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_5-4">
-                 <input class="radio" name="Rd_5" id="Rd_5-4" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_5-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_5-5">
-                 <input class="radio" name="Rd_5" id="Rd_5-5" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_5-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -274,31 +301,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_6-1">
-                 <input class="radio" name="Rd_6" id="Rd_6-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_6-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_6-2">
-                 <input class="radio" name="Rd_6" id="Rd_6-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_6-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_6-3">
-                 <input class="radio" name="Rd_6" id="Rd_6-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_6-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_6-4">
-                 <input class="radio" name="Rd_6" id="Rd_6-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_6-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_6-5">
-                 <input class="radio" name="Rd_6" id="Rd_6-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_6-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -315,31 +342,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_7-1">
-                 <input class="radio" name="Rd_7" id="Rd_7-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_7-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_7-2">
-                 <input class="radio" name="Rd_7" id="Rd_7-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_7-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_7-3">
-                 <input class="radio" name="Rd_7" id="Rd_7-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_7-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_7-4">
-                 <input class="radio" name="Rd_7" id="Rd_7-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_7-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_7-5">
-                 <input class="radio" name="Rd_7" id="Rd_7-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_7-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -356,31 +383,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_8-1">
-                 <input class="radio" name="Rd_8" id="Rd_8-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_8-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_8-2">
-                 <input class="radio" name="Rd_8" id="Rd_8-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_8-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_8-3">
-                 <input class="radio" name="Rd_8" id="Rd_8-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_8-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_8-4">
-                 <input class="radio" name="Rd_8" id="Rd_8-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_8-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_8-5">
-                 <input class="radio" name="Rd_8" id="Rd_8-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_8-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -397,31 +424,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_9-1">
-                 <input class="radio" name="Rd_9" id="Rd_9-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_9-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_9-2">
-                 <input class="radio" name="Rd_9" id="Rd_9-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_9-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_9-3">
-                 <input class="radio" name="Rd_9" id="Rd_9-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_9-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_9-4">
-                 <input class="radio" name="Rd_9" id="Rd_9-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_9-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_9-5">
-                 <input class="radio" name="Rd_9" id="Rd_9-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_9-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -438,31 +465,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_10-1">
-                 <input class="radio" name="Rd_10" id="Rd_10-1" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_10-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_10-2">
-                 <input class="radio" name="Rd_10" id="Rd_10-2" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_10-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_10-3">
-                 <input class="radio" name="Rd_10" id="Rd_10-3" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_10-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_10-4">
-                 <input class="radio" name="Rd_10" id="Rd_10-4" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_10-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_10-5">
-                 <input class="radio" name="Rd_10" id="Rd_10-5" type="radio" value="" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_10-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -479,31 +506,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_11-1">
-                 <input class="radio" name="Rd_11" id="Rd_11-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_11-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_11-2">
-                 <input class="radio" name="Rd_11" id="Rd_11-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_11-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_11-3">
-                 <input class="radio" name="Rd_11" id="Rd_11-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_11-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_11-4">
-                 <input class="radio" name="Rd_11" id="Rd_11-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_11-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_11-5">
-                 <input class="radio" name="Rd_11" id="Rd_11-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_11-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -520,31 +547,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_12-1">
-                 <input class="radio" name="Rd_12" id="Rd_12-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_12-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_12-2">
-                 <input class="radio" name="Rd_12" id="Rd_12-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_12-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_12-3">
-                 <input class="radio" name="Rd_12" id="Rd_12-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_12-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_12-4">
-                 <input class="radio" name="Rd_12" id="Rd_12-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_12-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_12-5">
-                 <input class="radio" name="Rd_12" id="Rd_12-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_12-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -561,31 +588,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_13-1">
-                 <input class="radio" name="Rd_13" id="Rd_13-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_13-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_13-2">
-                 <input class="radio" name="Rd_13" id="Rd_13-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_13-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_13-3">
-                 <input class="radio" name="Rd_13" id="Rd_13-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_13-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_13-4">
-                 <input class="radio" name="Rd_13" id="Rd_13-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_13-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_13-5">
-                 <input class="radio" name="Rd_13" id="Rd_13-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_13-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -602,31 +629,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_14-1">
-                 <input class="radio" name="Rd_14" id="Rd_14-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_14-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_14-2">
-                 <input class="radio" name="Rd_14" id="Rd_14-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_14-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_14-3">
-                 <input class="radio" name="Rd_14" id="Rd_14-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_14-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_14-4">
-                 <input class="radio" name="Rd_14" id="Rd_14-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_14-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_14-5">
-                 <input class="radio" name="Rd_14" id="Rd_14-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_14-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -643,31 +670,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_15-1">
-                 <input class="radio" name="Rd_15" id="Rd_15-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_15-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_15-2">
-                 <input class="radio" name="Rd_15" id="Rd_15-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_15-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_15-3">
-                 <input class="radio" name="Rd_15" id="Rd_15-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_15-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_15-4">
-                 <input class="radio" name="Rd_15" id="Rd_15-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_15-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_15-5">
-                 <input class="radio" name="Rd_15" id="Rd_15-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_15-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -684,31 +711,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_16-1">
-                 <input class="radio" name="Rd_16" id="Rd_16-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_16-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_16-2">
-                 <input class="radio" name="Rd_16" id="Rd_16-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_16-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_16-3">
-                 <input class="radio" name="Rd_16" id="Rd_16-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_16-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_16-4">
-                 <input class="radio" name="Rd_16" id="Rd_16-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_16-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_16-5">
-                 <input class="radio" name="Rd_16" id="Rd_16-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_16-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -725,31 +752,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_17-1">
-                 <input class="radio" name="Rd_17" id="Rd_17-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_17-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_17-2">
-                 <input class="radio" name="Rd_17" id="Rd_17-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_17-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_17-3">
-                 <input class="radio" name="Rd_17" id="Rd_17-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_17-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_17-4">
-                 <input class="radio" name="Rd_17" id="Rd_17-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_17-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_17-5">
-                 <input class="radio" name="Rd_17" id="Rd_17-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_17-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -766,31 +793,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_18-1">
-                 <input class="radio" name="Rd_18" id="Rd_18-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_18-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_18-2">
-                 <input class="radio" name="Rd_18" id="Rd_18-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_18-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_18-3">
-                 <input class="radio" name="Rd_18" id="Rd_18-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_18-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_18-4">
-                 <input class="radio" name="Rd_18" id="Rd_18-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_18-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_18-5">
-                 <input class="radio" name="Rd_18" id="Rd_18-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_18-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -807,31 +834,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_19-1">
-                 <input class="radio" name="Rd_19" id="Rd_19-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_19-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_19-2">
-                 <input class="radio" name="Rd_19" id="Rd_19-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_19-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_19-3">
-                 <input class="radio" name="Rd_19" id="Rd_19-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_19-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_19-4">
-                 <input class="radio" name="Rd_19" id="Rd_19-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_19-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_19-5">
-                 <input class="radio" name="Rd_19" id="Rd_19-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_19-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -848,31 +875,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_20-1">
-                 <input class="radio" name="Rd_20" id="Rd_20-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_20-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_20-2">
-                 <input class="radio" name="Rd_20" id="Rd_20-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_20-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_20-3">
-                 <input class="radio" name="Rd_20" id="Rd_20-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_20-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_20-4">
-                 <input class="radio" name="Rd_20" id="Rd_20-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_20-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_20-5">
-                 <input class="radio" name="Rd_20" id="Rd_20-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_20-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -889,31 +916,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_21-1">
-                 <input class="radio" name="Rd_21" id="Rd_21-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_21-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_21-2">
-                 <input class="radio" name="Rd_21" id="Rd_21-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_21-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_21-3">
-                 <input class="radio" name="Rd_21" id="Rd_21-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_21-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_21-4">
-                 <input class="radio" name="Rd_21" id="Rd_21-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_21-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_21-5">
-                 <input class="radio" name="Rd_21" id="Rd_21-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_21-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -930,31 +957,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_22-1">
-                 <input class="radio" name="Rd_22" id="Rd_22-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_22-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_22-2">
-                 <input class="radio" name="Rd_22" id="Rd_22-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_22-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_22-3">
-                 <input class="radio" name="Rd_22" id="Rd_22-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_22-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_22-4">
-                 <input class="radio" name="Rd_22" id="Rd_22-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_22-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_22-5">
-                 <input class="radio" name="Rd_22" id="Rd_22-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_22-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -971,31 +998,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_23-1">
-                 <input class="radio" name="Rd_23" id="Rd_23-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_23-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_23-2">
-                 <input class="radio" name="Rd_23" id="Rd_23-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_23-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_23-3">
-                 <input class="radio" name="Rd_23" id="Rd_23-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_23-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_23-4">
-                 <input class="radio" name="Rd_23" id="Rd_23-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_23-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_23-5">
-                 <input class="radio" name="Rd_23" id="Rd_23-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_23-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1012,31 +1039,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_24-1">
-                 <input class="radio" name="Rd_24" id="Rd_24-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_24-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_24-2">
-                 <input class="radio" name="Rd_24" id="Rd_24-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_24-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_24-3">
-                 <input class="radio" name="Rd_24" id="Rd_24-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_24-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_24-4">
-                 <input class="radio" name="Rd_24" id="Rd_24-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_24-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_24-5">
-                 <input class="radio" name="Rd_24" id="Rd_24-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_24-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1053,31 +1080,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_25-1">
-                 <input class="radio" name="Rd_25" id="Rd_25-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_25-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_25-2">
-                 <input class="radio" name="Rd_25" id="Rd_25-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_25-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_25-3">
-                 <input class="radio" name="Rd_25" id="Rd_25-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_25-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_25-4">
-                 <input class="radio" name="Rd_25" id="Rd_25-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_25-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_25-5">
-                 <input class="radio" name="Rd_25" id="Rd_25-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_25-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1094,31 +1121,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_26-1">
-                 <input class="radio" name="Rd_26" id="Rd_26-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_26-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_26-2">
-                 <input class="radio" name="Rd_26" id="Rd_26-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_26-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_26-3">
-                 <input class="radio" name="Rd_26" id="Rd_26-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_26-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_26-4">
-                 <input class="radio" name="Rd_26" id="Rd_26-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_26-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_26-5">
-                 <input class="radio" name="Rd_26" id="Rd_26-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_26-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1135,31 +1162,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_27-1">
-                 <input class="radio" name="Rd_27" id="Rd_27-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_27-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_27-2">
-                 <input class="radio" name="Rd_27" id="Rd_27-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_27-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_27-3">
-                 <input class="radio" name="Rd_27" id="Rd_27-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_27-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_27-4">
-                 <input class="radio" name="Rd_27" id="Rd_27-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_27-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_27-5">
-                 <input class="radio" name="Rd_27" id="Rd_27-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_27-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1176,31 +1203,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_28-1">
-                 <input class="radio" name="Rd_28" id="Rd_28-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_28-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_28-2">
-                 <input class="radio" name="Rd_28" id="Rd_28-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_28-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_28-3">
-                 <input class="radio" name="Rd_28" id="Rd_28-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_28-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_28-4">
-                 <input class="radio" name="Rd_28" id="Rd_28-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_28-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_28-5">
-                 <input class="radio" name="Rd_28" id="Rd_28-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_28-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1217,31 +1244,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_29-1">
-                 <input class="radio" name="Rd_29" id="Rd_29-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_29-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_29-2">
-                 <input class="radio" name="Rd_29" id="Rd_29-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_29-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_29-3">
-                 <input class="radio" name="Rd_29" id="Rd_29-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_29-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_29-4">
-                 <input class="radio" name="Rd_29" id="Rd_29-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_29-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_29-5">
-                 <input class="radio" name="Rd_29" id="Rd_29-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_29-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1258,31 +1285,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_30-1">
-                 <input class="radio" name="Rd_30" id="Rd_30-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_30-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_30-2">
-                 <input class="radio" name="Rd_30" id="Rd_30-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_30-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_30-3">
-                 <input class="radio" name="Rd_30" id="Rd_30-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_30-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_30-4">
-                 <input class="radio" name="Rd_30" id="Rd_30-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_30-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_30-5">
-                 <input class="radio" name="Rd_30" id="Rd_30-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_30-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1299,31 +1326,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_31-1">
-                 <input class="radio" name="Rd_31" id="Rd_31-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_31-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_31-2">
-                 <input class="radio" name="Rd_31" id="Rd_31-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_31-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_31-3">
-                 <input class="radio" name="Rd_31" id="Rd_31-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_31-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_31-4">
-                 <input class="radio" name="Rd_31" id="Rd_31-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_31-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_31-5">
-                 <input class="radio" name="Rd_31" id="Rd_31-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_31-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1340,31 +1367,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_32-1">
-                 <input class="radio" name="Rd_32" id="Rd_32-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_32-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_32-2">
-                 <input class="radio" name="Rd_32" id="Rd_32-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_32-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_32-3">
-                 <input class="radio" name="Rd_32" id="Rd_32-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_32-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_32-4">
-                 <input class="radio" name="Rd_32" id="Rd_32-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_32-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_32-5">
-                 <input class="radio" name="Rd_32" id="Rd_32-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_32-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1381,31 +1408,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_33-1">
-                 <input class="radio" name="Rd_33" id="Rd_33-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_33-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_33-2">
-                 <input class="radio" name="Rd_33" id="Rd_33-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_33-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_33-3">
-                 <input class="radio" name="Rd_33" id="Rd_33-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_33-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_33-4">
-                 <input class="radio" name="Rd_33" id="Rd_33-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_33-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_33-5">
-                 <input class="radio" name="Rd_33" id="Rd_33-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_33-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1422,31 +1449,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_34-1">
-                 <input class="radio" name="Rd_34" id="Rd_34-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_34-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_34-2">
-                 <input class="radio" name="Rd_34" id="Rd_34-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_34-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_34-3">
-                 <input class="radio" name="Rd_34" id="Rd_34-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_34-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_34-4">
-                 <input class="radio" name="Rd_34" id="Rd_34-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_34-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_34-5">
-                 <input class="radio" name="Rd_34" id="Rd_34-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_34-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1463,31 +1490,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_35-1">
-                 <input class="radio" name="Rd_35" id="Rd_35-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_35-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_35-2">
-                 <input class="radio" name="Rd_35" id="Rd_35-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_35-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_35-3">
-                 <input class="radio" name="Rd_35" id="Rd_35-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_35-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_35-4">
-                 <input class="radio" name="Rd_35" id="Rd_35-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_35-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_35-5">
-                 <input class="radio" name="Rd_35" id="Rd_35-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_35-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1504,32 +1531,32 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_36-1">
-                 <input class="radio" name="Rd_36" id="Rd_36-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_36-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_36-2">
-                 <input class="radio" name="Rd_36" id="Rd_36-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_36-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_36-3">
-                 <input class="radio" name="Rd_36" id="Rd_36-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_36-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_36-4">
-                 <input class="radio" name="Rd_36" id="Rd_36-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_36-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_36-5">
-                 <input class="radio" name="Rd_36" id="Rd_36-5" type="radio" value="0" onclick="Next(this)">
-                <span class="radio"><span>很少 </span></span>
+                 <input class="radio" name="userResulttest" id="Rd_36-5" type="radio" value="0" onclick="Next(this)">
+                <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
 						</ul>
@@ -1545,31 +1572,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_37-1">
-                 <input class="radio" name="Rd_37" id="Rd_37-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_37-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_37-2">
-                 <input class="radio" name="Rd_37" id="Rd_37-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_37-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_37-3">
-                 <input class="radio" name="Rd_37" id="Rd_37-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_37-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_37-4">
-                 <input class="radio" name="Rd_37" id="Rd_37-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_37-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_37-5">
-                 <input class="radio" name="Rd_37" id="Rd_37-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_37-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1586,31 +1613,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_38-1">
-                 <input class="radio" name="Rd_38" id="Rd_38-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_38-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_38-2">
-                 <input class="radio" name="Rd_38" id="Rd_38-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_38-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_38-3">
-                 <input class="radio" name="Rd_38" id="Rd_38-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_38-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_38-4">
-                 <input class="radio" name="Rd_38" id="Rd_38-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_38-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_38-5">
-                 <input class="radio" name="Rd_38" id="Rd_38-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_38-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1627,31 +1654,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_39-1">
-                 <input class="radio" name="Rd_39" id="Rd_39-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_39-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_39-2">
-                 <input class="radio" name="Rd_39" id="Rd_39-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_39-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_39-3">
-                 <input class="radio" name="Rd_39" id="Rd_39-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_39-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_39-4">
-                 <input class="radio" name="Rd_39" id="Rd_39-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_39-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_39-5">
-                 <input class="radio" name="Rd_39" id="Rd_39-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_39-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1668,31 +1695,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_40-1">
-                 <input class="radio" name="Rd_40" id="Rd_40-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_40-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_40-2">
-                 <input class="radio" name="Rd_40" id="Rd_40-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_40-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_40-3">
-                 <input class="radio" name="Rd_40" id="Rd_40-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_40-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_40-4">
-                 <input class="radio" name="Rd_40" id="Rd_40-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_40-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_40-5">
-                 <input class="radio" name="Rd_40" id="Rd_40-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_40-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1709,31 +1736,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_41-1">
-                 <input class="radio" name="Rd_41" id="Rd_41-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_41-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_41-2">
-                 <input class="radio" name="Rd_41" id="Rd_41-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_41-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_41-3">
-                 <input class="radio" name="Rd_41" id="Rd_41-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_41-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_41-4">
-                 <input class="radio" name="Rd_41" id="Rd_41-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_41-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_41-5">
-                 <input class="radio" name="Rd_41" id="Rd_41-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_41-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1750,31 +1777,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_42-1">
-                 <input class="radio" name="Rd_42" id="Rd_42-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_42-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_42-2">
-                 <input class="radio" name="Rd_42" id="Rd_42-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_42-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_42-3">
-                 <input class="radio" name="Rd_42" id="Rd_42-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_42-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_42-4">
-                 <input class="radio" name="Rd_42" id="Rd_42-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_42-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_42-5">
-                 <input class="radio" name="Rd_42" id="Rd_42-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_42-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1791,32 +1818,32 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_43-1">
-                 <input class="radio" name="Rd_43" id="Rd_43-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_43-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_43-2">
-                 <input class="radio" name="Rd_43" id="Rd_43-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_43-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_43-3">
-                 <input class="radio" name="Rd_43" id="Rd_43-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_43-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_43-4">
-                 <input class="radio" name="Rd_43" id="Rd_43-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_43-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_43-5">
-                 <input class="radio" name="Rd_43" id="Rd_43-5" type="radio" value="0" onclick="Next(this)">
-                <span class="radio"><span>很少 </span></span>
+                 <input class="radio" name="userResulttest" id="Rd_43-5" type="radio" value="0" onclick="Next(this)">
+                <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
 						</ul>
@@ -1832,31 +1859,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_44-1">
-                 <input class="radio" name="Rd_44" id="Rd_44-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_44-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_44-2">
-                 <input class="radio" name="Rd_44" id="Rd_44-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_44-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_44-3">
-                 <input class="radio" name="Rd_44" id="Rd_44-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_44-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_44-4">
-                 <input class="radio" name="Rd_44" id="Rd_44-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_44-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_44-5">
-                 <input class="radio" name="Rd_44" id="Rd_44-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_44-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1873,31 +1900,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_45-1">
-                 <input class="radio" name="Rd_45" id="Rd_45-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_45-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_45-2">
-                 <input class="radio" name="Rd_45" id="Rd_45-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_45-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_45-3">
-                 <input class="radio" name="Rd_45" id="Rd_45-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_45-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_45-4">
-                 <input class="radio" name="Rd_45" id="Rd_45-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_45-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_45-5">
-                 <input class="radio" name="Rd_45" id="Rd_45-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_45-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1914,31 +1941,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_46-1">
-                 <input class="radio" name="Rd_46" id="Rd_46-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_46-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_46-2">
-                 <input class="radio" name="Rd_46" id="Rd_46-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_46-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_46-3">
-                 <input class="radio" name="Rd_46" id="Rd_46-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_46-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_46-4">
-                 <input class="radio" name="Rd_46" id="Rd_46-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_46-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_46-5">
-                 <input class="radio" name="Rd_46" id="Rd_46-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_46-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1955,31 +1982,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_47-1">
-                 <input class="radio" name="Rd_47" id="Rd_47-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_47-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_47-2">
-                 <input class="radio" name="Rd_47" id="Rd_47-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_47-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_47-3">
-                 <input class="radio" name="Rd_47" id="Rd_47-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_47-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_47-4">
-                 <input class="radio" name="Rd_47" id="Rd_47-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_47-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_47-5">
-                 <input class="radio" name="Rd_47" id="Rd_47-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_47-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -1996,31 +2023,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_48-1">
-                 <input class="radio" name="Rd_48" id="Rd_48-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_48-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_48-2">
-                 <input class="radio" name="Rd_48" id="Rd_48-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_48-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_48-3">
-                 <input class="radio" name="Rd_48" id="Rd_48-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_48-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_48-4">
-                 <input class="radio" name="Rd_48" id="Rd_48-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_48-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_48-5">
-                 <input class="radio" name="Rd_48" id="Rd_48-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_48-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -2037,31 +2064,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_49-1">
-                 <input class="radio" name="Rd_49" id="Rd_49-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_49-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_49-2">
-                 <input class="radio" name="Rd_49" id="Rd_49-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_49-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_49-3">
-                 <input class="radio" name="Rd_49" id="Rd_49-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_49-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时 </span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_49-4">
-                 <input class="radio" name="Rd_49" id="Rd_49-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_49-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少 </span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_49-5">
-                 <input class="radio" name="Rd_49" id="Rd_49-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_49-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未 </span></span>
              </label>
 							</li>
@@ -2078,31 +2105,31 @@
 						<ul style="margin-top: 20px;">
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_50-1">
-                 <input class="radio" name="Rd_50" id="Rd_50-1" type="radio" value="4" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_50-1" type="radio" value="4" onclick="Next(this)">
                  <span class="radio"><span>总是</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_50-2">
-                 <input class="radio" name="Rd_50" id="Rd_50-2" type="radio" value="3" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_50-2" type="radio" value="3" onclick="Next(this)">
                  <span class="radio"><span>经常</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block;" class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_50-3">
-                 <input class="radio" name="Rd_50" id="Rd_50-3" type="radio" value="2" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_50-3" type="radio" value="2" onclick="Next(this)">
                  <span class="radio"><span>有时</span></span>
              </label>
 							</li>
 							<li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_50-4">
-                 <input class="radio" name="Rd_50" id="Rd_50-4" type="radio" value="1" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_50-4" type="radio" value="1" onclick="Next(this)">
                 <span class="radio"><span>很少</span></span>
              </label>
 							</li>
                             <li>
 								<label style="display:block; " class="vam" onmouseover="this.className=&#39;over&#39;;" onmouseout="this.className=&#39;out&#39;;" for="Rd_50-5">
-                 <input class="radio" name="Rd_50" id="Rd_50-5" type="radio" value="0" onclick="Next(this)">
+                 <input class="radio" name="userResulttest" id="Rd_50-5" type="radio" value="0" onclick="Next(this)">
                 <span class="radio"><span>从未</span></span>
              </label>
 							</li>
@@ -2136,7 +2163,28 @@
 			var LOCK_TIME = 900;
 			var lastClick = (new Date()).getTime();
 
+			
+			function CheckPost(){
+				
+				
+				
+				return true;
+				
+			}
+			var flag = false;
+			var count = 0;
 			function Next(Obj) {
+				
+				if(flag){
+					
+					var val = Obj.value;
+					//alert(val)
+					count++;
+					console.info('第' + count + '题,选择' + val)
+					$('#form1').append('<input name="userResult"  type="hidden" value="'+val+'">');
+				}
+				flag = true;
+			
 				var clickDiff = (new Date()).getTime() - lastClick;
 				lastClick = (new Date()).getTime();
 				//if(clickDiff < LOCK_TIME) {
