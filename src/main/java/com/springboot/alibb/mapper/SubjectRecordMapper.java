@@ -19,21 +19,15 @@ public interface SubjectRecordMapper {
 
     int insertSelective(SubjectRecord record);
 
-    List<SubjectRecord> selectByExampleWithBLOBs(SubjectRecordExample example);
-
     List<SubjectRecord> selectByExample(SubjectRecordExample example);
 
     SubjectRecord selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") SubjectRecord record, @Param("example") SubjectRecordExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") SubjectRecord record, @Param("example") SubjectRecordExample example);
-
     int updateByExample(@Param("record") SubjectRecord record, @Param("example") SubjectRecordExample example);
 
     int updateByPrimaryKeySelective(SubjectRecord record);
-
-    int updateByPrimaryKeyWithBLOBs(SubjectRecord record);
 
     int updateByPrimaryKey(SubjectRecord record);
 }

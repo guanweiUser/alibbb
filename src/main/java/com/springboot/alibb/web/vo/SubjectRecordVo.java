@@ -14,6 +14,10 @@ public class SubjectRecordVo extends SubjectRecord {
      * 第几页
      */
     private int offset = 0;
+    /**
+     * 浏览器信息
+     */
+    private String browserInfo;
 
     /**
      * 用户填写测评结果
@@ -55,5 +59,13 @@ public class SubjectRecordVo extends SubjectRecord {
 
     public void setOffset(int offset) {
         this.offset = offset;
+    }
+
+    public String getBrowserInfo() {
+        return browserInfo;
+    }
+
+    public void setBrowserInfo(String browserInfo) {
+        this.browserInfo = browserInfo;
     }
 }
