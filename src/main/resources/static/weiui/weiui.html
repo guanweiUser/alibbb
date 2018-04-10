@@ -26,14 +26,14 @@
 	 <div class="weui-cells__title">请选择题目（历史填报信息）：</div>
 	<div class="weui-cells" style="background-color: rgb(246, 244, 236);">
 
-	  <a class="weui-cell weui-cell_access" id="a" href="javascript:;">
+	  <a class="weui-cell weui-cell_access oneList"  name="geilixinli_90" href="javascript:;">
 		<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
 		<div class="weui-cell__bd">
 		  <p>十项症状自评量表SCL90</p>
 		</div>
 		<div class="weui-cell__ft">90题</div>
 	  </a>
-	  <a class="weui-cell weui-cell_access" id="b" href="javascript:;">
+	  <a class="weui-cell weui-cell_access oneList" name="pressure_PSTR" href="javascript:;">
 		<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
 		<div class="weui-cell__bd">
 		  <p>PSTR心理压力测试</p>
@@ -63,7 +63,7 @@
 
 <script>
 
-	function getList() {
+	function getList(type) {
 		$.ajax({
 		//几个参数需要注意一下
 			type: "POST",//方法类型
@@ -72,30 +72,38 @@
 			data: {
 				limit:10,
 				offset:0,
-				type:'geilixinli_90',
+				type:type,
 				ditch:'lfsxlwsxh'
 			},
 			success: function (result) {
 				console.log(result);//打印服务端返回的数据(调试用)
 				//$('.q_info').remove();
 				//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
-                $('#towList').html('');
-				for(ind in result){
-                    var record = result[ind];
-                    var name = record.name;
-                    if(!name){
-                        name = "未填报";
-					}
+
+                var defStr = '空';
+                if(!result || result.length == 0){	//暂无填报记录
                     $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
 											<div class="weui-cell__hd"></div>
 											<div class="weui-cell__bd">
-											  <p>`+name+`-`+record.sex+`-`+record.age+`-`+record.phone+`</p>
+											  <p>暂无填报记录</p>
+											</div>
+											<div class="weui-cell__ft">`+new Date().Format("MM-dd hh:mm:ss ")+`</div>
+										  </a>`);
+				}else{
+
+                    for(ind in result){	//展示二级列表信息
+                        var record = result[ind];
+                        $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
+											<div class="weui-cell__hd"></div>
+											<div class="weui-cell__bd">
+											  <p>`+IFNULL(record.name,defStr)+`-`+IFNULL(record.sex,defStr)+`-`+IFNULL(record.age, defStr)+`-`+IFNULL(record.phone, defStr)+`</p>
 											</div>
 											<div class="weui-cell__ft">`+new Date(record.createTime).Format("MM-dd hh:mm:ss ")+`</div>
 										  </a>`);
 
 
-				}
+                    }
+                }
 			}
 		});
 	}
@@ -103,18 +111,20 @@
 	$(function(){
 
 	    //查看历史明细
-		$('#a').click(function(){
+		$('.oneList').click(function(){
+            $('#towList').html('');
+		    var type = $(this).attr('name');
 			//隐藏一级列表
 			$('#oneDiv').hide();
 			//展示二级列表
 			$('#towDiv').show();
 			
-			getList();
+			getList(type);
 			
 		})
 		//返回主页
 		$('#home').click(function(){
-
+            $('#towList').html('');
             //隐藏二级列表
             $('#towDiv').hide();
             //展示一级列表

@@ -35,3 +35,18 @@ Date.prototype.Format = function (fmt) { //author: meizz
     return fmt;
 
 }
+
+
+/**
+ * 判断为空返回默认值
+ * @param str
+ * @param defStr
+ * @returns {*}
+ * @constructor
+ */
+function IFNULL(str, defStr){
+     if(!str){
+          return defStr;
+     }
+     return str;
+}
