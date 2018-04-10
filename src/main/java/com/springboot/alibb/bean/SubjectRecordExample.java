@@ -15,6 +15,8 @@ public class SubjectRecordExample {
 
     private Integer offset;
 
+    private String customField;
+
     public SubjectRecordExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -82,6 +84,14 @@ public class SubjectRecordExample {
 
     public Integer getOffset() {
         return offset;
+    }
+
+    public void setCustomField(String customField) {
+        this.customField = customField;
+    }
+
+    public String getCustomField() {
+        return customField;
     }
 
     protected abstract static class GeneratedCriteria {

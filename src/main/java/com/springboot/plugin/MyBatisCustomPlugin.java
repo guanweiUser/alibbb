@@ -4,13 +4,14 @@ import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Attribute;
+import org.mybatis.generator.api.dom.xml.Element;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
 import java.util.List;
 
 /**
- * mybatis.generator 分页自定义插件
+ * mybatis.generator 分页自定义插件  自定义查询的字段
  * @program: alibbb
  *
  * @description:
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @create: 2018-04-10 16:10
  **/
-public class MySQLLimitPlugin extends PluginAdapter {
+public class MyBatisCustomPlugin extends PluginAdapter {
 
 
     @Override
@@ -36,7 +37,9 @@ public class MySQLLimitPlugin extends PluginAdapter {
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 
         PrimitiveTypeWrapper integerWrapper = FullyQualifiedJavaType.getIntInstance().getPrimitiveTypeWrapper();
-
+        PrimitiveTypeWrapper stringWrapper = FullyQualifiedJavaType.getStringInstance().getPrimitiveTypeWrapper();
+        FullyQualifiedJavaType stringInstance = FullyQualifiedJavaType.getStringInstance();
+        //分页相关start
         Field limit = new Field();
         limit.setName("limit");
         limit.setVisibility(JavaVisibility.PRIVATE);
@@ -76,6 +79,31 @@ public class MySQLLimitPlugin extends PluginAdapter {
         getOffset.setName("getOffset");
         getOffset.addBodyLine("return offset;");
         topLevelClass.addMethod(getOffset);
+        //分页相关end
+
+
+//
+        Field customField = new Field();
+        customField.setName("customField");
+        customField.setVisibility(JavaVisibility.PRIVATE);
+        customField.setType(stringInstance);
+        topLevelClass.addField(customField);
+
+        Method setCustomField = new Method();
+        setCustomField.setVisibility(JavaVisibility.PUBLIC);
+        setCustomField.setName("setCustomField");
+        setCustomField.addParameter(new Parameter(stringInstance, "customField"));
+        setCustomField.addBodyLine("this.customField = customField;");
+        topLevelClass.addMethod(setCustomField);
+
+        Method getCustomField = new Method();
+        getCustomField.setVisibility(JavaVisibility.PUBLIC);
+        getCustomField.setReturnType(stringInstance);
+        getCustomField.setName("getCustomField");
+        getCustomField.addBodyLine("return customField;");
+        topLevelClass.addMethod(getCustomField);
+
+
 
         return true;
     }
@@ -102,6 +130,25 @@ public class MySQLLimitPlugin extends PluginAdapter {
 
         element.addElement(ifLimitNotNullElement);
 
+        //删除 <include refid="Base_Column_List" />
+        element.getElements().remove(3);
+
+        //增加自定义字段
+        XmlElement ifCustomFieldNotNullElement = new XmlElement("if");
+        ifCustomFieldNotNullElement.addAttribute(new Attribute("test", "customField != null"));
+        ifCustomFieldNotNullElement.addElement(new TextElement(" ${customField} "));
+
+        XmlElement ifCustomFieldNullElement = new XmlElement("if");
+        ifCustomFieldNullElement.addAttribute(new Attribute("test", "customField == null"));
+        ifCustomFieldNullElement.addElement(new TextElement(" <include refid=\"Base_Column_List\" /> "));
+
+
+//        for(int i = )
+
+        //添加到from之前
+        element.addElement(3,ifCustomFieldNotNullElement);
+        element.addElement(4, ifCustomFieldNullElement);
+//        element.
         return true;
     }
 

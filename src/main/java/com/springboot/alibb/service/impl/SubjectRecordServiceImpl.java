@@ -118,10 +118,12 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
         String ditch = subjectRecordVo.getDitch();
         String type = subjectRecordVo.getType();
         SubjectRecordExample subjectRecordExample = new SubjectRecordExample();
-
         //分页
         subjectRecordExample.setLimit(subjectRecordVo.getLimit());
         subjectRecordExample.setOffset(subjectRecordExample.getOffset());
+
+        //
+        subjectRecordExample.setCustomField("id,name,phone,sex,age,create_time");
 
         subjectRecordExample.createCriteria().andDitchEqualTo(ditch).andTypeEqualTo(type);
         subjectRecordExample.setOrderByClause("create_time DESC");

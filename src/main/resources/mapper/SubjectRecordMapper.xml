@@ -103,7 +103,12 @@
       distinct
     </if>
     'true' as QUERYID,
-    <include refid="Base_Column_List" />
+    <if test="customField != null">
+       ${customField} 
+    </if>
+    <if test="customField == null">
+       <include refid="Base_Column_List" /> 
+    </if>
     from ali_subject_record
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

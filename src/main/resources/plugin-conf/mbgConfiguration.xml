@@ -11,7 +11,7 @@
         <!-- <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin> -->
 
         <!-- 自定义分页支持 -->
-        <plugin type="com.springboot.plugin.MySQLLimitPlugin"></plugin>
+        <plugin type="com.springboot.plugin.MyBatisCustomPlugin"></plugin>
 
         <!-- 生成的pojo，将implements Serializable-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
