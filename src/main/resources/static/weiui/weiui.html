@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="pixel-ratio-3 retina ios ios-10 ios-10-3 ios-gt-9 ios-gt-8 ios-gt-7 ios-gt-6">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+	">
+    <title>测评后台管理</title>
+    <!-- head 中 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+	<link rel="stylesheet" href="common.css">
+</head>
+
+
+
+ <body ontouchstart="" style="background-color: rgb(246, 244, 236);">
+
+<header class="demos-header">
+  <h1 class="demos-title" id="home">测评后台</h1>
+</header>
+ <div id="oneDiv">
+	 <div class="weui-cells__title">请选择题目（历史填报信息）：</div>
+	<div class="weui-cells" style="background-color: rgb(246, 244, 236);">
+
+	  <a class="weui-cell weui-cell_access" id="a" href="javascript:;">
+		<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
+		<div class="weui-cell__bd">
+		  <p>十项症状自评量表SCL90</p>
+		</div>
+		<div class="weui-cell__ft">90题</div>
+	  </a>
+	  <a class="weui-cell weui-cell_access" id="b" href="javascript:;">
+		<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
+		<div class="weui-cell__bd">
+		  <p>PSTR心理压力测试</p>
+		</div>
+		<div class="weui-cell__ft">50题</div>
+	  </a>
+	</div>
+</div>
+ <div id="towDiv"  style="display:none;">
+	 <div class="weui-cells__title">姓名-性别-年龄-手机号：</div>
+	<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
+		<!-- 二级列表 -->
+	</div>
+</div>
+
+
+</body>
+
+<!-- body 最后 -->
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+
+<!-- 如果使用了某些拓展插件还需要额外的JS -->
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
+<script src="../common/utils/commonUtils.js"></script>
+
+<script>
+
+	function getList() {
+		$.ajax({
+		//几个参数需要注意一下
+			type: "POST",//方法类型
+			dataType: "jsonp",//预期服务器返回的数据类型
+			url: "http://127.0.0.1:8010/appraisal/getSubjectRecordList.json" ,//url
+			data: {
+				limit:10,
+				offset:0,
+				type:'geilixinli_90',
+				ditch:'lfsxlwsxh'
+			},
+			success: function (result) {
+				console.log(result);//打印服务端返回的数据(调试用)
+				//$('.q_info').remove();
+				//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
+                $('#towList').html('');
+				for(ind in result){
+                    var record = result[ind];
+                    var name = record.name;
+                    if(!name){
+                        name = "未填报";
+					}
+                    $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
+											<div class="weui-cell__hd"></div>
+											<div class="weui-cell__bd">
+											  <p>`+name+`-`+record.sex+`-`+record.age+`-`+record.phone+`</p>
+											</div>
+											<div class="weui-cell__ft">`+new Date(record.createTime).Format("MM-dd hh:mm:ss ")+`</div>
+										  </a>`);
+
+
+				}
+			}
+		});
+	}
+	
+	$(function(){
+
+	    //查看历史明细
+		$('#a').click(function(){
+			//隐藏一级列表
+			$('#oneDiv').hide();
+			//展示二级列表
+			$('#towDiv').show();
+			
+			getList();
+			
+		})
+		//返回主页
+		$('#home').click(function(){
+
+            //隐藏二级列表
+            $('#towDiv').hide();
+            //展示一级列表
+            $('#oneDiv').show();
+
+
+		})
+
+	})
+	
+</script>
+</html>

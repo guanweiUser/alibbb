@@ -7,6 +7,15 @@ import java.util.List;
 public class SubjectRecordVo extends SubjectRecord {
 
     /**
+     * 每页几条
+     */
+    private int limit = 10;
+    /**
+     * 第几页
+     */
+    private int offset = 0;
+
+    /**
      * 用户填写测评结果
      */
     private List<String> userResult;
@@ -30,5 +39,21 @@ public class SubjectRecordVo extends SubjectRecord {
 
     public void setCallback(String callback) {
         this.callback = callback;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 }

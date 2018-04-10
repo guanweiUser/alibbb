@@ -1,7 +1,10 @@
 package com.springboot.alibb.service;
 
+import com.springboot.alibb.bean.SubjectRecord;
 import com.springboot.alibb.web.vo.SubjectRecordVo;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 测评
@@ -9,6 +12,19 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ISubjectRecordService {
 
-    public String addSubjectRecord(SubjectRecordVo SubjectRecordVo);
+    /**
+     * 添加测评信息
+     * @param subjectRecordVo
+     * @return
+     */
+    public String addSubjectRecord(SubjectRecordVo subjectRecordVo);
+
+
+    /**
+     * 获取测评历史记录
+     * @param subjectRecordVo
+     * @return
+     */
+    public List<SubjectRecord> getSubjectRecordList(SubjectRecordVo subjectRecordVo);
 
 }

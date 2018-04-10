@@ -6,6 +6,13 @@
 <generatorConfiguration>
     <properties resource="plugin-conf/jdbc.properties" />
     <context id="sqlserverTables" targetRuntime="MyBatis3">
+
+        <!-- 支持分页 不推荐使用RowBoundsPlugin -->
+        <!-- <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin> -->
+
+        <!-- 自定义分页支持 -->
+        <plugin type="com.springboot.plugin.MySQLLimitPlugin"></plugin>
+
         <!-- 生成的pojo，将implements Serializable-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <commentGenerator>

@@ -6,6 +6,8 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.springboot.alibb.bean.SubjectRecord;
+import com.springboot.alibb.bean.SubjectRecordExample;
 import com.springboot.alibb.data.CollectData;
 import com.springboot.alibb.mapper.SubjectRecordMapper;
 import com.springboot.alibb.service.ISubjectRecordService;
@@ -58,6 +60,8 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
 
         //json提报以及结果信息
         JSONObject jsonResult = new JSONObject();
+        //jsonp
+        String callback = subjectRecordVo.getCallback();
         switch (subjectType){
 
             case "geilixinli_90" :  //给力心理90道题
@@ -68,8 +72,6 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
                 //存储结果信息
                 jsonResult.put("select", userResult);
                 jsonResult.put("result", r_info);
-                //jsonp
-                String callback = subjectRecordVo.getCallback();
                 resultHtml = callback + "({'html':'"+s+"'})";
                 break;
 
@@ -85,10 +87,12 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
                 String s1 = CollectData.pressureResult(paramMap);
 
                 resultHtml = s1.replaceAll("/mmpi", "http://140.143.237.60:8020/appraisal/lfxlcsxh.htm?ditch=" + subjectRecordVo.getDitch()).replaceAll("MMPI明尼苏达心理评估量表", "十项症状自评量表SCL90");
+                s = resultHtml.replaceAll("<", "@xiaoyu").replaceAll(">", "@dayu").replaceAll("\r|\n", "").replaceAll("'", "@danyinhao");
 
                 //存储结果信息
                 jsonResult.put("select", paramMap);
                 jsonResult.put("result", resultHtml);
+                resultHtml = callback + "({'html':'"+s+"'})";
                 break;
         }
 
@@ -101,5 +105,27 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
         subjectRecordMapper.insert(subjectRecordVo);
         log.info("姓名-手机号：{}-{}，提交了测评信息!", subjectRecordVo.getName(), subjectRecordVo.getPhone());
         return resultHtml;
+    }
+
+    /**
+     * 获取测评历史记录
+     * @param subjectRecordVo
+     * @return
+     */
+    @Override
+    public List<SubjectRecord> getSubjectRecordList(SubjectRecordVo subjectRecordVo) {
+
+        String ditch = subjectRecordVo.getDitch();
+        String type = subjectRecordVo.getType();
+        SubjectRecordExample subjectRecordExample = new SubjectRecordExample();
+
+        //分页
+        subjectRecordExample.setLimit(subjectRecordVo.getLimit());
+        subjectRecordExample.setOffset(subjectRecordExample.getOffset());
+
+        subjectRecordExample.createCriteria().andDitchEqualTo(ditch).andTypeEqualTo(type);
+        subjectRecordExample.setOrderByClause("create_time DESC");
+
+        return subjectRecordMapper.selectByExample(subjectRecordExample);
     }
 }
