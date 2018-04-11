@@ -27,4 +27,10 @@ public interface ISubjectRecordService {
      */
     public List<SubjectRecord> getSubjectRecordList(SubjectRecordVo subjectRecordVo);
 
+    /**
+     * 查看某人测评结果信息
+     * @param subjectRecordVo
+     * @return
+     */
+    public SubjectRecord getSubjectRecordResultById(SubjectRecordVo subjectRecordVo);
 }

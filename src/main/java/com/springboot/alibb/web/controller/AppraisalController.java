@@ -52,8 +52,7 @@ public class AppraisalController extends BaseController {
 
 
     /**
-     * 1提交测评
-     * 2返回测评结果
+     * 获取填报测评历史信息
      * @param request
      * @return
      */
@@ -69,6 +68,29 @@ public class AppraisalController extends BaseController {
 
             //解析测评 获取结果 存储测评信息 返回测评结果
             return subjectRecordVo.getCallback() + "(" + JSONUtil.parseArray(subjectRecordService.getSubjectRecordList(subjectRecordVo)).toString() + ")";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "系统故障，请稍后再试!";
+        }
+    }
+    /**
+     * 查看某人测评结果信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("/getSubjectRecordResultById.json")
+    public String getSubjectRecordResultById(HttpServletRequest request, SubjectRecordVo subjectRecordVo) {
+
+        try {
+
+            //测评人IP
+            subjectRecordVo.setIp(this.getIpAddr(request));
+            //测评人浏览器信息
+            subjectRecordVo.setBrowserInfo(this.getBrowserInfo(request));
+
+            //解析测评 获取结果 存储测评信息 返回测评结果
+            return subjectRecordVo.getCallback() + "(" + JSONUtil.parse(subjectRecordService.getSubjectRecordResultById(subjectRecordVo)).toString() + ")";
 
         } catch (Exception e) {
             e.printStackTrace();

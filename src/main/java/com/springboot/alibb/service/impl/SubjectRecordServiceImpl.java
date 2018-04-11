@@ -6,9 +6,12 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.springboot.alibb.bean.DictionaryBig;
+import com.springboot.alibb.bean.DictionaryBigKey;
 import com.springboot.alibb.bean.SubjectRecord;
 import com.springboot.alibb.bean.SubjectRecordExample;
 import com.springboot.alibb.data.CollectData;
+import com.springboot.alibb.mapper.DictionaryBigMapper;
 import com.springboot.alibb.mapper.SubjectRecordMapper;
 import com.springboot.alibb.service.ISubjectRecordService;
 import com.springboot.alibb.web.vo.SubjectRecordVo;
@@ -17,6 +20,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+
+import static javax.swing.UIManager.get;
 
 /**
  * 答题（测评）记录
@@ -29,6 +34,9 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
 
     @Resource
     private SubjectRecordMapper subjectRecordMapper;
+
+    @Resource
+    private DictionaryBigMapper dictionaryBigMapper;
 
     /**
      * 提交测评
@@ -130,5 +138,45 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
         subjectRecordExample.setOrderByClause("create_time DESC");
 
         return subjectRecordMapper.selectByExample(subjectRecordExample);
+    }
+
+    /**
+     * 查看某人测评结果信息
+     * @param subjectRecordVo
+     * @return
+     */
+    @Override
+    public SubjectRecord getSubjectRecordResultById(SubjectRecordVo subjectRecordVo) {
+
+        SubjectRecordExample subjectRecordExample = new SubjectRecordExample();
+
+        //自定义查询字段
+        subjectRecordExample.setCustomField("id,name,phone,sex,age,create_time, type,JSON_UNQUOTE(JSON_EXTRACT(result, '$.result')) AS 'result'");
+
+
+        subjectRecordExample.createCriteria().andIdEqualTo(subjectRecordVo.getId());
+
+        List<SubjectRecord> subjectRecords = subjectRecordMapper.selectByExample(subjectRecordExample);
+        if(subjectRecords != null && subjectRecords.size() >= 1){
+            SubjectRecord subjectRecord = subjectRecords.get(0);
+
+            String type = subjectRecord.getType();
+            DictionaryBigKey dictionaryBigKey = new DictionaryBigKey();
+            dictionaryBigKey.setDictName(type + "_before");
+            dictionaryBigKey.setDictType("htmlAppend");
+            DictionaryBig beforeHtml = dictionaryBigMapper.selectByPrimaryKey(dictionaryBigKey);
+
+            dictionaryBigKey.setDictName(type + "_after");
+            dictionaryBigKey.setDictType("htmlAppend");
+            DictionaryBig afterHtml = dictionaryBigMapper.selectByPrimaryKey(dictionaryBigKey);
+            if(beforeHtml != null && afterHtml != null){
+
+                subjectRecord.setResult(beforeHtml.getDictValue() + subjectRecord.getResult() + afterHtml.getDictValue());
+            }
+
+            return subjectRecord;
+        }
+
+        return null;
     }
 }
