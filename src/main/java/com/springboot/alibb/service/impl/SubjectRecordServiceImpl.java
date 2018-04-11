@@ -123,7 +123,7 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
         subjectRecordExample.setLimit(subjectRecordVo.getLimit());
         subjectRecordExample.setOffset(subjectRecordExample.getOffset());
 
-        //
+        //自定义查询字段
         subjectRecordExample.setCustomField("id,name,phone,sex,age,create_time");
 
         subjectRecordExample.createCriteria().andDitchEqualTo(ditch).andTypeEqualTo(type);

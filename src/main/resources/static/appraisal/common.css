@@ -17,6 +17,10 @@ body, html {
 }
 
 .demos-header {
+  background-color:#F5F4EC;
+  position:inherit;
+  z-index:500;
+  width:100%;
   padding: 35px 0;
 }
 
@@ -41,4 +45,12 @@ footer {
 footer a {
   color: #999;
   text-decoration: none;
+}
+
+/*简化标题*/
+.demos-header-simple {
+  background-color:#F5F4EC;
+  width:100%;
+  position:absolute;
+  z-index:500;
 }
