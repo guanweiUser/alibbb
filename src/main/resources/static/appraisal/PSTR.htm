@@ -52,7 +52,7 @@
 			break;
 		}
 		$('title').text('PSTR心理压力测试【' + showText + '】');
-		$('#centerText').text('PSTR心理压力测试【' + showText + '】');
+		$('#centerText').html('PSTR心理压力测试【<a href="list.html?ditch='+ditch+'" style="color: #1b1b1b;font-size: 16px;"  >' + showText + '</a>】');
 		$('#ditch').val(ditch);
 	}
 	

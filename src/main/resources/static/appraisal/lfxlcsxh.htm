@@ -19,7 +19,7 @@
         <div class="top_img"><img id="logo" src="./lfxlcsxh/6.png" width="34"></div>
     <div class="top_txt">十项症状自评量表SCL90</div>    
     <div class="down"><a href="#" target="_blank"></a></div>
-    <div class="home"><a href="#" target="_blank"></a></div>    
+    <div class="home"><a href="list.html" style="color: white;" id="listHtml" ><img src="images/box/home.png"></a></div>
     </div>    <div class="q_content" style="margin-top: 34px;">
 		<!-- 提交表单 -->
         <form action="http://localhost:8080/appraisal/result" method="post" id="testform">
@@ -55,7 +55,7 @@
 		$('title').text(showText);
 		$('.q_title').text('十项症状自评量表SCL90【' + showText + '】');
 		$('.top_txt').text(showText);
-		
+        $('#listHtml').attr('href', $('#listHtml').attr('href') + '?ditch=' + ditch);
 		$('#ditch').val(ditch);
 	}else{
 		$('#logo').remove();
@@ -1172,9 +1172,9 @@
             <input type="hidden" name="qyid" value="0">
             <input type="hidden" name="testuserinfo" value="">
             <input type="hidden" name="shareid" value="0">
+
         </form>
-    </div>
- 
+</div>
 <script>
 
 function submit() {
