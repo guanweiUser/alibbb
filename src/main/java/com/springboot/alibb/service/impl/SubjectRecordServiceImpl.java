@@ -96,6 +96,7 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
                 break;
         }
 
+        jsonResult.put("browserInfo", subjectRecordVo.getBrowserInfo());
         //存储提报以及结果信息
         subjectRecordVo.setResult(jsonResult.toString());
 
