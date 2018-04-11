@@ -7,7 +7,7 @@
 
 	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 	">
-    <title>后台管理</title>
+    <title>心理学</title>
     <!-- head 中 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
@@ -22,7 +22,7 @@
 
 		 <!--<h1 class="demos-title">下拉刷新</h1>-->
 		 <header class="demos-header">
-			<h1 class="demos-title" id="home">后台管理</h1>
+			<h1 class="demos-title" id="home">首页</h1>
 			<!--<h5 class="demos-title" id="home">测评后台</h5>-->
 		</header>
 		 <div class="maxDiv" >
@@ -41,29 +41,23 @@
 
 
 
-				 <div class="weui-cells__title" id="showText2">历史填报信息：</div>
+				 <div class="weui-cells__title" id="showText2">测评列表：</div>
 				<div class="weui-cells" style="background-color: rgb(246, 244, 236);">
 
-				  <a class="weui-cell weui-cell_access oneList"  name="geilixinli_90" href="javascript:;">
+				  <a class="weui-cell weui-cell_access oneList"  name="geilixinli_90" id="geilixinli_90" href="lfxlcsxh.htm">
 					<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
 					<div class="weui-cell__bd">
 					  <p>十项症状自评量表SCL90</p>
 					</div>
 					<div class="weui-cell__ft">90题</div>
 				  </a>
-				  <a class="weui-cell weui-cell_access oneList" name="pressure_PSTR" href="javascript:;">
+				  <a class="weui-cell weui-cell_access oneList" name="pressure_PSTR" id="pressure_PSTR" href="PSTR.htm">
 					<div class="weui-cell__hd"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII=" alt="" style="width:20px;margin-right:5px;display:block"></div>
 					<div class="weui-cell__bd">
 					  <p>PSTR心理压力测试</p>
 					</div>
 					<div class="weui-cell__ft">50题</div>
 				  </a>
-				</div>
-			</div>
-			 <div id="towDiv"  style="display:none;">
-				 <div class="weui-cells__title">姓名-性别-年龄-手机号（下拉刷新）：</div>
-				<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
-					<!-- 二级列表 -->
 				</div>
 			</div>
 		 </div>
@@ -73,8 +67,8 @@
 	 <!-- Footer底部页脚START -->
 	 <div class="weui-footer weui-footer_fixed-bottom">
 		 <p class="weui-footer__links">
-			 <a href="list.html" id="listHtml" class="weui-footer__link">首页</a>
-			 <a href="javascript:showHome();" class="weui-footer__link">后台管理</a>
+			 <a href="javascript:$.alert('您当前位置已在首页。')" class="weui-footer__link">首页</a>
+			 <a href="manager.html" id="managerHtml" class="weui-footer__link">后台管理</a>
 		 </p>
 		 <p class="weui-footer__text">Copyright © 2018-2021 alibbb.com.cn</p>
 	 </div>
@@ -84,7 +78,6 @@
 <!-- body 最后 -->
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="../common/utils/commonUtils.js"></script>
-
 <script>
 
     //获取渠道参数
@@ -107,18 +100,21 @@
                 break;
         }
 
-        $('title').text(showText + '后台管理');
-        $('#home').text(showText + '后台管理');
-        // $('#geilixinli_90').attr('href', $('#geilixinli_90').attr('href') + '?ditch=' + ditch);
-        // $('#pressure_PSTR').attr('href', $('#pressure_PSTR').attr('href') + '?ditch=' + ditch);
-        $('#listHtml').attr('href', $('#listHtml').attr('href') + '?ditch=' + ditch);
-        $('#showText2').text(showText + '（历史填报信息：）：');
+        $('title').text(showText + '首页');
+        $('#home').text(showText + '首页');
+        $('#geilixinli_90').attr('href', $('#geilixinli_90').attr('href') + '?ditch=' + ditch);
+        $('#pressure_PSTR').attr('href', $('#pressure_PSTR').attr('href') + '?ditch=' + ditch);
+        $('#managerHtml').attr('href', $('#managerHtml').attr('href') + '?ditch=' + ditch);
+        $('#showText2').text(showText + '（测评列表）：');
+
     }
 
 
 </script>
 
+
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+
 <script src="../common/utils/commonUtils.js" type="text/javascript"></script>
 <!-- 如果使用了某些拓展插件还需要额外的JS -->
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
@@ -126,8 +122,6 @@
 
 <script>
 	var type;
-	//登陆状态默认未登录
-	var loginStarus = 'false';
 		//getCookie(loginStarus);
 	function getList(type) {
 	    //清空二级列表数据
@@ -141,7 +135,7 @@
 				limit:1000,
 				offset:0,
 				type:type,
-				ditch:ditch
+				ditch:'lfsxlwsxh'
 			},
 			success: function (result) {
 				console.log(result);//打印服务端返回的数据(调试用)
@@ -178,17 +172,6 @@
 		});
 	}
 
-
-	//展示首页
-    function showHome(){
-        //隐藏二级列表
-        $('#towDiv').hide();
-        //展示一级列表
-        $('#oneDiv').show();
-
-
-    }
-
 	//登陆
     function loginIn(){
 
@@ -216,10 +199,8 @@
             },
 			onCancel: function () {
 				//点击取消
-				alert('您取消登陆，点击确定将跳转到首页。');
-                $('#listHtml').click();
-                location.href = $('#listHtml').attr('href');
-                //console.info('取消')
+				alert('取消登陆');
+                loginIn();
 			}
         });
     }
@@ -246,30 +227,6 @@
 
 
         });
-
-
-	    //查看历史明细
-		$('.oneList').click(function(){
-
-		    type = $(this).attr('name');
-			//隐藏一级列表
-			$('#oneDiv').hide();
-			//展示二级列表
-			$('#towDiv').show();
-			
-			getList(type);
-
-		})
-		//返回主页
-		$('#home').click(function(){
-            showHome();
-		})
-
-		//判断是否登陆
-		if(loginStarus != 'true'){
-		    loginIn();
-		}
-
 
 	})
 	
