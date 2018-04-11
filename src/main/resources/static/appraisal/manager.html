@@ -22,7 +22,7 @@
 
 		 <!--<h1 class="demos-title">下拉刷新</h1>-->
 		 <header class="demos-header">
-			<h1 class="demos-title" id="home">后台管理</h1>
+			<h1 class="demos-title" id="home" style="font-size: 2em;">后台管理</h1>
 			<!--<h5 class="demos-title" id="home">测评后台</h5>-->
 		</header>
 		 <div class="maxDiv" >
@@ -96,19 +96,21 @@
         var showText = "";
         switch(ditch){
             case 'xlk':
-                showText = '心理科'
+                showText = '心理科';
+                showHtml = '心理科';
                 $('#logo').remove();	//删除logo
                 break;
             case 'lfsxlwsxh':
-                showText = '临汾市心理卫生协会'
+                showText = '临汾市心理卫生协会';
+                showHtml = '<p>临汾市心理卫生协会</p>';
                 break;
             default:
                 $('#logo').remove();
                 break;
         }
 
-        $('title').text(showText + '后台管理');
-        $('#home').text(showText + '后台管理');
+        $('title').text(showText + '管理平台');
+        $('#home').html(showHtml + '管理平台');
         // $('#geilixinli_90').attr('href', $('#geilixinli_90').attr('href') + '?ditch=' + ditch);
         // $('#pressure_PSTR').attr('href', $('#pressure_PSTR').attr('href') + '?ditch=' + ditch);
         $('#listHtml').attr('href', $('#listHtml').attr('href') + '?ditch=' + ditch);

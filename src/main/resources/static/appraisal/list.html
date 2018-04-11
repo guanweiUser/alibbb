@@ -89,11 +89,13 @@
         var showText = "";
         switch(ditch){
             case 'xlk':
-                showText = '心理科'
+                showText = '心理科';
+                showHtml = '心理科';
                 $('#logo').remove();	//删除logo
                 break;
             case 'lfsxlwsxh':
-                showText = '临汾市心理卫生协会'
+                showText = '临汾市心理卫生协会';
+                showHtml = '<p>临汾市</p>心理卫生协会';
                 break;
             default:
                 $('#logo').remove();
@@ -101,7 +103,7 @@
         }
 
         $('title').text(showText + '首页');
-        $('#home').text(showText + '首页');
+        $('#home').html(showHtml + '首页');
         $('#geilixinli_90').attr('href', $('#geilixinli_90').attr('href') + '?ditch=' + ditch);
         $('#pressure_PSTR').attr('href', $('#pressure_PSTR').attr('href') + '?ditch=' + ditch);
         $('#managerHtml').attr('href', $('#managerHtml').attr('href') + '?ditch=' + ditch);
