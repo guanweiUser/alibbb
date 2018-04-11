@@ -7,7 +7,7 @@ body, html {
   font-size: 34px;
   color: #3cc51f;
   font-weight: 400;
-  margin: 0 15%;
+  /*margin: 0 15%;*/
 }
 
 .demos-sub-title {
@@ -16,13 +16,9 @@ body, html {
   font-size: 14px;
 }
 
-.demos-header {
-  background-color:#F5F4EC;
-  position:inherit;
-  z-index:500;
-  width:100%;
-  padding: 35px 0;
-}
+/*.demos-header {*/
+  /*padding: 35px 0;*/
+/*}*/
 
 .demos-content-padded {
   padding: 15px;
@@ -45,12 +41,4 @@ footer {
 footer a {
   color: #999;
   text-decoration: none;
-}
-
-/*简化标题*/
-.demos-header-simple {
-  background-color:#F5F4EC;
-  width:100%;
-  position:absolute;
-  z-index:500;
 }
