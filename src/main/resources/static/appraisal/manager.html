@@ -190,12 +190,12 @@
 		//几个参数需要注意一下
 			type: "POST",//方法类型
 			dataType: "jsonp",//预期服务器返回的数据类型
-			url: "http://127.0.0.1:8010/appraisal/getSubjectRecordResultById.json" ,//url
+			url: "http://140.143.237.60:8010/appraisal/getSubjectRecordResultById.json" ,//url
 			data: {
 				id:id
 			},
 			success: function (result) {
-				console.log(result);//打印服务端返回的数据(调试用)
+				//console.log(result);//打印服务端返回的数据(调试用)
 				//$('.q_info').remove();
 				//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
 				$('body').html(result.result)
