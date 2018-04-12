@@ -10,7 +10,7 @@
         <!-- 支持分页 不推荐使用RowBoundsPlugin -->
         <!-- <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin> -->
 
-        <!-- 自定义分页支持 -->
+        <!-- 自定义插件 : 分页支持 / 自定义字段查询 -->
         <plugin type="com.springboot.plugin.MyBatisCustomPlugin"></plugin>
 
         <!-- 生成的pojo，将implements Serializable-->
