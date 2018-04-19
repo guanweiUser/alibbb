@@ -66,16 +66,16 @@
 		
             <div class="q_info" id="userInfo">
                 <div><br/>
-                    姓&nbsp&nbsp&nbsp&nbsp名：<input type="text" name="name" placeholder="请输入姓名"  />
+                    姓&nbsp&nbsp&nbsp&nbsp名：<input type="text" name="name" id="formName" placeholder="请输入姓名"  />
                 </div><br/>
 				<div>
 				性&nbsp&nbsp&nbsp&nbsp别：<input type="radio" name="sex" value="男" />男&nbsp&nbsp&nbsp&nbsp<input type="radio" name="sex" value="女" />女
                 </div><br/>
 				<div>
-				年&nbsp&nbsp&nbsp&nbsp龄：<input type="text" placeholder="请输入年龄"  onkeyup="this.value=this.value.replace(/\D{3}$/g,'')" onafterpaste="this.value=this.value.replace(/\D{3}$/g,'')" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/"  name="age"  />
+				年&nbsp&nbsp&nbsp&nbsp龄：<input type="text" id="formAge" placeholder="请输入年龄"  onkeyup="this.value=this.value.replace(/\D{3}$/g,'')" onafterpaste="this.value=this.value.replace(/\D{3}$/g,'')" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/"  name="age"  />
                </div><br/>
 			   <div>
-                    手机号：<input type="text" name="phone" placeholder="请输入手机号码"  /><br/>
+                    手机号：<input type="text" name="phone" id="formPhone" placeholder="请输入手机号码"  /><br/>
                 </div>
                 <div><br/>
                     <li value="1" qid="start" nextorderid="1">开始测试</li>
@@ -1186,8 +1186,16 @@ function submit() {
 		data: $('#testform').serialize(),
 		success: function (result) {
 			//console.log(result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>'));//打印服务端返回的数据(调试用)
+
+            var defStr = '空';
+            var formName = IFNULL($('#formName').val(),defStr);
+            var formSex = IFNULL($('[name="sex"]:checked').val(),defStr);
+            var formAge = IFNULL($('#formAge').val(),defStr);
+            var formPhone = IFNULL($('#formPhone').val(),defStr);
+
+
 			$('.q_info').remove();
-			$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
+			$('#testform').append('<br class="q_info" style="display: block;" >姓名：' + formName + '</br>性别：' + formSex + '</br>年龄：' + formAge + '</br>电话：' + formPhone + '</br>' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
 			flag = true;
 			
 		}

@@ -63,7 +63,7 @@
         <table border="0" style="max-width:100%; margin:0 auto">
           <tbody><tr >
             <td style="width:5rem; text-align:right;letter-spacing:0.1rem; color:#666">姓&nbsp&nbsp&nbsp名:</td>
-            <td><input name="name"  type="text" style="width: 13rem; height: 2rem; background-color: rgb(246, 244, 236);" value=""></td>
+            <td><input name="name" id="formName"  type="text" style="width: 13rem; height: 2rem; background-color: rgb(246, 244, 236);" value=""></td>
           </tr>
           <tr >
             <td style="width:5rem; text-align:right; letter-spacing:0.1rem; color:#666">性&nbsp&nbsp&nbsp别:</td>
@@ -71,11 +71,11 @@
           </tr>
 		   <tr >
             <td style="width:5rem; text-align:right; letter-spacing:0.1rem; color:#666">年&nbsp&nbsp&nbsp龄:</td>
-            <td><input name="age" id="test_email" type="text" style="width: 13rem; height: 2rem; background-color: rgb(246, 244, 236);" value=""></td>
+            <td><input name="age" id="test_email"  type="text" style="width: 13rem; height: 2rem; background-color: rgb(246, 244, 236);" value=""></td>
           </tr>
 		  <tr >
             <td style="width:5rem; text-align:right; letter-spacing:0.1rem; color:#666">手机号:</td>
-            <td><input name="phone"  type="text" style="width: 13rem; height: 2rem; background-color: rgb(246, 244, 236);" value=""></td>
+            <td><input name="phone"  type="text" id="formPhone" style="width: 13rem; height: 2rem; background-color: rgb(246, 244, 236);" value=""></td>
           </tr>
 		  
           <tr style="height:2.5rem">
@@ -2161,7 +2161,13 @@
 						//$('.q_info').remove();
 						//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
 						//flag = true;
-						$('html').html(result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>').replace(/@danyinhao/g, "'"));
+                        var defStr = '空';
+						var formName = IFNULL($('#formName').val(),defStr);
+						var formSex = IFNULL($('[name="sex"]:checked').val(),defStr);
+						var formAge = IFNULL($('#test_email').val(),defStr);
+                        var formPhone = IFNULL($('#formPhone').val(),defStr);
+
+						$('html').html('姓名：' + formName + '</br>性别：' + formSex + '</br>年龄：' + formAge + '</br>电话：' + formPhone + '</br>' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>').replace(/@danyinhao/g, "'"));
 						
 					}
 				});
