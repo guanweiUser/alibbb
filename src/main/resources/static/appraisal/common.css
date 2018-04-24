@@ -54,3 +54,70 @@ footer a {
   position:absolute;
   z-index:500;
 }
+
+
+/*分页 start*/
+.pager {
+  font-size: 14px;
+}
+.pager:after, .pager:before {
+  display: table;
+  content: " ";
+}
+.pager:after {
+  clear: both;
+}
+.pager-left {
+  width: 40%;
+  border: 0px solid #D5D5D5;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 5px;
+  float: left;
+}
+
+.pager-first {
+  width: 44%;
+  padding: 7px 0;
+  float: left;
+  border-right: 1px solid #EFEFEF;
+}
+
+.pager-pre {
+  width: 55%;
+  padding: 7px 0;
+  float: right;
+}
+
+.pager-cen {
+  float: left;
+  width: 19%;
+  text-align: center;
+  padding: 7px 0;
+}
+.pager-right {
+  width: 40%;
+  border: 0px solid #D5D5D5;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 5px;
+  float: right;
+}
+
+.pager-next {
+  width: 55%;
+  padding: 7px 0;
+  float: left;
+  border-right: 1px solid #EFEFEF;
+}
+.pager-end {
+  width: 44%;
+  padding: 7px 0;
+  float: right;
+}
+
+.pager a {
+  color: #18b4ed;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

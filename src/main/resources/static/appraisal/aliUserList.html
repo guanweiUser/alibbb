@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="pixel-ratio-3 retina ios ios-10 ios-10-3 ios-gt-9 ios-gt-8 ios-gt-7 ios-gt-6">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+	">
+    <title>会员列表</title>
+    <!-- head 中 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+	<link rel="stylesheet" href="common.css">
+</head>
+
+
+
+ <body ontouchstart="" style="background-color: rgb(246, 244, 236);">
+	 <div class="weui-tab">
+
+		 <!-- 搜索功能Start -->
+		 <div class="weui-search-bar" id="searchBar">
+			 <div class="weui-search-bar__form">
+				 <div class="weui-search-bar__box">
+					 <i class="weui-icon-search"></i>
+					 <input type="search" class="weui-search-bar__input" id="searchInputUserName" name="userName" placeholder="搜索" required="">
+					 <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+				 </div>
+				 <label class="weui-search-bar__label" id="searchText">
+					 <i class="weui-icon-search"></i>
+					 <span>搜索</span>
+				 </label>
+			 </div>
+			 <a href="javascript:" class="weui-search-bar__cancel-btn" id="search">搜索</a>
+			 <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+		 </div>
+		 <!-- 搜索功能End -->
+
+
+		 <header class="demos-header">
+			 <h1 class="demos-title" id="home" style="font-size: 2em;">会员列表</h1>
+			 <!--<h5 class="demos-title" id="home">测评后台</h5>-->
+		 </header>
+		 <div class="maxDiv" >
+
+			 <!-- body 顶部加上如下代码 -->
+			 <div class="weui-pull-to-refresh__layer">
+				 <div class='weui-pull-to-refresh__arrow'></div>
+				 <div class='weui-pull-to-refresh__preloader'></div>
+				 <div class="down">下拉刷新</div>
+				 <div class="up">释放刷新</div>
+				 <div class="refresh">正在刷新</div>
+			 </div>
+
+
+			 <div id="towDiv">
+				 <div class="weui-cells__title">姓名-性别（下拉刷新）：</div>
+				<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
+					<!-- 二级列表 -->
+				</div>
+
+				 <!-- 分页 -->
+				 <div style="margin-bottom: 88px;margin-top: 20px;">
+				 <div class="pager">
+					 <div class="pager-left" style="background-color: rgb(246, 244, 236);">
+						 <div class="pager-first" ><a class="pager-nav">首页</a></div>
+						 <div class="pager-pre"  ><a class="pager-nav" pager="pre">上一页</a></div>
+					 </div>
+					 <div class="pager-cen" id="pager-cen">1/120</div>
+					 <div class="pager-right" style="background-color: rgb(246, 244, 236);">
+						 <div class="pager-next"  ><a class="pager-nav" pager="next">下一页</a></div>
+						 <div class="pager-end" ><a class="pager-nav">尾页</a></div>
+					 </div>
+				 </div>
+				 </div>
+				 <!-- 分页 -->
+			</div>
+		 </div>
+
+	 </div>
+
+	 <!-- Footer底部页脚START -->
+	 <div class="weui-footer weui-footer_fixed-bottom">
+		 <p class="weui-footer__links">
+			 <a href="list.html" id="listHtml" class="weui-footer__link">测评</a>
+			 <a href="javascript:showHome();" class="weui-footer__link">会员查询</a>
+			 <a href="manager.html" class="weui-footer__link">后台管理</a>
+		 </p>
+		 <p class="weui-footer__text">Copyright © 2018-2021 alibbb.com.cn</p>
+	 </div>
+	 <!-- Footer底部页脚END -->
+ </body>
+
+<!-- body 最后 -->
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="../common/utils/commonUtils.js"></script>
+
+<script>
+
+    //获取渠道参数
+    var ditch = GetQueryString('ditch');
+    //需要展示的div
+    showDiv = GetQueryString('showDiv');
+    password = GetQueryString('password');
+    //lfsxlwsxh = 临汾市心理卫生协会
+    //xlk = 心理科
+    //根据渠道判断展示的名称
+    if(ditch){
+        var showText = "";
+        switch(ditch){
+            case 'xlk':
+                showText = '心理科';
+                showHtml = '心理科';
+                $('#logo').remove();	//删除logo
+                break;
+            case 'lfsxlwsxh':
+                showText = '临汾市心理卫生协会';
+                showHtml = '<p>临汾市心理卫生协会</p>';
+                break;
+            default:
+                $('#logo').remove();
+                break;
+        }
+
+        $('title').text(showText + '管理平台');
+        $('#home').html(showHtml + '管理平台');
+        // $('#geilixinli_90').attr('href', $('#geilixinli_90').attr('href') + '?ditch=' + ditch);
+        // $('#pressure_PSTR').attr('href', $('#pressure_PSTR').attr('href') + '?ditch=' + ditch);
+        $('#listHtml').attr('href', $('#listHtml').attr('href') + '?ditch=' + ditch);
+        $('#showText2').text(showText + '（历史填报信息：）：');
+    }
+
+
+</script>
+
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="../common/utils/commonUtils.js" type="text/javascript"></script>
+<!-- 如果使用了某些拓展插件还需要额外的JS -->
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
+
+<script>
+	var type;
+	//登陆状态默认未登录
+	var loginStarus = 'false';
+	var passwordConfig = 'wzr';
+
+    //每页几条
+    var limit = 10;
+    //当前页
+    var offset = 0;
+
+	//获取二级列表数据
+	function getList(type) {
+	    //清空二级列表数据
+        $('#towList').html('');
+		$.ajax({
+		//几个参数需要注意一下
+			type: "POST",//方法类型
+			dataType: "jsonp",//预期服务器返回的数据类型
+            url: "http://127.0.0.1:8010/user/getAliUserList.json" ,//url
+			data: {
+				limit:limit,
+				offset:offset,
+				type:type,
+				userName:$('#searchInputUserName').val()
+			},
+			success: function (result) {
+                $('#pager-cen').text((offset+1) + '/' + '120');
+				//console.log(result);//打印服务端返回的数据(调试用)
+				//$('.q_info').remove();
+				//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
+
+                var defStr = '空';
+                if(!result || result.length == 0){	//暂无填报记录
+                    $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
+											<div class="weui-cell__hd"></div>
+											<div class="weui-cell__bd">
+											  <p>暂会员记录</p>
+											</div>
+											<div class="weui-cell__ft">`+new Date().Format("MM-dd hh:mm:ss ")+`</div>
+										  </a>`);
+				}else{
+
+                    for(ind in result){	//展示二级列表信息
+                        var record = result[ind];
+                        $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:getSubjectRecordResultById('`+record.id+`');">
+											<div class="weui-cell__hd"></div>
+											<div class="weui-cell__bd">
+											  <p>`+IFNULL(record.userName,defStr)+`-`+IFNULL(record.sex, '保密')+`</p>
+											</div>
+											<div class="weui-cell__ft">`+IFNULL(record.userCode,defStr)+`</div>
+										  </a>`);
+
+
+                    }
+                }
+                //完成下拉刷新
+                $('.maxDiv').pullToRefreshDone();
+			}
+		});
+	}
+
+	//获取单条测评结果
+	// function getSubjectRecordResultById(id) {
+	//     //清空二级列表数据
+     //    $('#towList').html('');
+	// 	$.ajax({
+	// 	//几个参数需要注意一下
+	// 		type: "POST",//方法类型
+	// 		dataType: "jsonp",//预期服务器返回的数据类型
+	// 		url: "http://140.143.237.60:8010/appraisal/getSubjectRecordResultById.json" ,//url
+	// 		data: {
+	// 			id:id
+	// 		},
+	// 		success: function (result) {
+	// 			//console.log(result);//打印服务端返回的数据(调试用)
+	// 			//$('.q_info').remove();
+	// 			//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
+	// 			$('body').html(`<a href="javascript:location.href = location.href + '&password=`+passwordConfig+`&showDiv=` + type + `';" class="weui-btn weui-btn_warn">关闭</a>姓名：` + IFNULL(result.name, '空') + `</br>性别：`
+	// 				+ IFNULL(result.sex, '空') + `</br>年龄：` + IFNULL(result.age, '空') + `</br>电话：` + IFNULL(result.phone, '空') +
+	// 				`</br>` + result.result + `<a href="javascript:location.href = location.href + '&password=`+passwordConfig+`&showDiv=` + type + `';" class="weui-btn weui-btn_warn">关闭</a>`);
+     //            //完成下拉刷新
+     //            $('.maxDiv').pullToRefreshDone();
+	// 		}
+	// 	});
+	// }
+
+
+	//展示首页
+    // function showHome(){
+     //    //隐藏二级列表
+     //    $('#towDiv').hide();
+     //    //展示一级列表
+     //    $('#oneDiv').show();
+    // }
+
+    /**
+	 * 页面加载完成
+     */
+	$(function(){
+
+
+
+        $('.maxDiv').pullToRefresh(function () {
+            // 下拉刷新触发时执行的操作放这里。
+            // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
+
+			if(type){
+                getList(type);
+            }else{
+                //完成下拉刷新
+                $('.maxDiv').pullToRefreshDone();
+			}
+
+
+        });
+
+		//展示用户信息列表
+		getList(type);
+
+		//返回主页
+		$('#home').click(function(){
+            showHome();
+		})
+
+		//点击搜索
+		$('#search').click(function(){
+
+		    $('#searchBar').attr('class', 'weui-search-bar weui-search-bar_focusing');
+
+            offset = 0;
+
+            getList(type);
+            return false;
+		})
+		//点击取消搜索
+		$('#searchCancel').click(function(){
+			$('#searchInputUserName').val('');
+            offset = 0;
+            getList(type);
+		})
+
+
+
+		//分页
+		$('.pager-nav').click(function(){
+			$('#searchInputUserName').val('');
+
+			var pager = $(this).attr('pager');
+			if(pager == 'next'){
+                offset = offset+1;
+			}
+			if(pager == 'pre'){
+			    if(offset >= 1){
+                    offset = offset-1;
+                }else{
+			        return false;
+				}
+			}
+
+
+           // $('#searchBar').attr('class', 'weui-search-bar weui-search-bar_focusing');
+
+            getList(type);
+		})
+
+
+
+
+	})
+	
+</script>
+</html>
