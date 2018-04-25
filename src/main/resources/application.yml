@@ -1,14 +1,14 @@
 server:
-  port: 8010
+  port: 8010  #访问端口
   session-timeout: 1800
-  tomcat:
+  tomcat: #tomcat配置
     max-threads: 0
     uri-encoding: UTF-8
     basedir: target/tomcat
 
-
+#Spring配置
 spring:
-  datasource:
+  datasource: #数据库配置
     url : jdbc:mysql://140.143.237.60:3306/alibb?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username : root
     password : G278363604.
@@ -19,7 +19,7 @@ spring:
       encoding.enabled: true
       encoding.force: true
 
-#MYBATIS
+#MYBATIS配置
 mybatis:
   type-aliases-package: com.springboot.alibb.mapper
   #mapper.xml所在位置
@@ -29,3 +29,9 @@ mybatis:
     use-generated-keys: true
     default-fetch-size: 100
     default-statement-timeout: 30
+
+
+#日志配置
+logging:
+  level:  #日志级别
+    root: DEBUG   #DEBUG INFO
