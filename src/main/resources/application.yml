@@ -34,4 +34,4 @@ mybatis:
 #日志配置
 logging:
   level:  #日志级别
-    root: DEBUG   #DEBUG INFO
+    root: DEBUG   #优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、 ALL。
