@@ -7,12 +7,14 @@
 
 	<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 	">
-    <title>会员列表</title>
+    <title>会员查询系统</title>
     <!-- head 中 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
 
 	<link rel="stylesheet" href="common.css">
+	<style>
+	</style>
 </head>
 
 
@@ -40,7 +42,7 @@
 
 
 		 <header class="demos-header">
-			 <h1 class="demos-title" id="home" style="font-size: 2em;">会员列表</h1>
+			 <h1 class="demos-title" id="home" style="font-size: 2em;">会员查询系统</h1>
 			 <!--<h5 class="demos-title" id="home">测评后台</h5>-->
 		 </header>
 		 <div class="maxDiv" >
@@ -56,24 +58,14 @@
 
 
 			 <div id="towDiv">
-				 <div class="weui-cells__title">姓名-性别（下拉刷新）：</div>
+				 <div class="weui-cells__title">姓名-性别-会员编号（下拉刷新）：</div>
 				<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
 					<!-- 二级列表 -->
 				</div>
 
 				 <!-- 分页 -->
-				 <div style="margin-bottom: 88px;margin-top: 20px;">
-				 <div class="pager">
-					 <div class="pager-left" style="background-color: rgb(246, 244, 236);">
-						 <div class="pager-first" ><a class="pager-nav">首页</a></div>
-						 <div class="pager-pre"  ><a class="pager-nav" pager="pre">上一页</a></div>
-					 </div>
-					 <div class="pager-cen" id="pager-cen">1/120</div>
-					 <div class="pager-right" style="background-color: rgb(246, 244, 236);">
-						 <div class="pager-next"  ><a class="pager-nav" pager="next">下一页</a></div>
-						 <div class="pager-end" ><a class="pager-nav">尾页</a></div>
-					 </div>
-				 </div>
+				 <div id="weui_pager" style="margin-bottom: 88px;margin-top: 20px;">
+
 				 </div>
 				 <!-- 分页 -->
 			</div>
@@ -96,6 +88,8 @@
 <!-- body 最后 -->
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="../common/utils/commonUtils.js"></script>
+<script src="../common/utils/weuiUtils.js"></script>
+<script src="../common/utils/commonConfig.js" type="text/javascript"></script>
 
 <script>
 
@@ -136,7 +130,7 @@
 </script>
 
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
-<script src="../common/utils/commonUtils.js" type="text/javascript"></script>
+
 <!-- 如果使用了某些拓展插件还需要额外的JS -->
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
@@ -147,32 +141,30 @@
 	var loginStarus = 'false';
 	var passwordConfig = 'wzr';
 
-    //每页几条
-    var limit = 10;
-    //当前页
-    var offset = 0;
-
 	//获取二级列表数据
-	function getList(type) {
+	function getList() {
+        var searchInputUserName = $('#searchInputUserName').val();
+
+        //搜索条件不能为空
+	    if(!searchInputUserName){
+	        return;
+		}
+
 	    //清空二级列表数据
         $('#towList').html('');
 		$.ajax({
 		//几个参数需要注意一下
 			type: "POST",//方法类型
 			dataType: "jsonp",//预期服务器返回的数据类型
-            url: "http://140.143.237.60:8010/user/getAliUserList.json" ,//url
+            url: Config.host + "user/getAliUserList.json?time=" + Date.parse(new Date()),//url
 			data: {
 				limit:limit,
 				offset:offset,
-				type:type,
 				userName:$('#searchInputUserName').val()
 			},
+            jsonp: "callback", //回调函数的名字，此值固定
+            timeout: 30000,
 			success: function (result) {
-                $('#pager-cen').text((offset+1) + '/' + '120');
-				//console.log(result);//打印服务端返回的数据(调试用)
-				//$('.q_info').remove();
-				//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
-
                 var defStr = '空';
                 if(!result || result.length == 0){	//暂无填报记录
                     $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
@@ -186,56 +178,37 @@
 
                     for(ind in result){	//展示二级列表信息
                         var record = result[ind];
-                        $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:getSubjectRecordResultById('`+record.id+`');">
-											<div class="weui-cell__hd"></div>
-											<div class="weui-cell__bd">
-											  <p>`+IFNULL(record.userName,defStr)+`-`+IFNULL(record.sex, '保密')+`</p>
-											</div>
-											<div class="weui-cell__ft">`+IFNULL(record.userCode,defStr)+`</div>
-										  </a>`);
+                        // $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:getSubjectRecordResultById('`+record.id+`');">
+							// 				<div class="weui-cell__hd"></div>
+							// 				<div class="weui-cell__bd">
+							// 				  <p>`+IFNULL(record.userName,defStr)+`-`+IFNULL(record.sex, '保密')+`</p>
+							// 				</div>
+							// 				<div class="weui-cell__ft">`+IFNULL(record.userCode,defStr)+`</div>
+							// 			  </a>`);
 
+                        $('#towList').append(`<div class="weui-panel__bd">
+							  <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="margin-left: 16px;">
+								<div class="weui-media-box__hd" style="overflow: hidden;height: 90px;width: 80px; ">
+								  		<img class="weui-media-box__thumb" style="max-height: 130%;margin-top: -10px;max-width: 120%;" src="images/avatar/clipboard.jpg" alt="`+IFNULL(record.userName,defStr)+`">
+								</div>
+								<div class="weui-media-box__bd">
+								  <h4 class="weui-media-box__title">`+IFNULL(record.userName,defStr)+`</h4>
+								  <p class="weui-media-box__desc">性别：`+IFNULL(record.sex, '保密')+`&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp会员编号：`+IFNULL(record.userCode,defStr)+`</p>
+								</div>
+							  </a>
+							</div>`);
 
                     }
                 }
                 //完成下拉刷新
                 $('.maxDiv').pullToRefreshDone();
-			}
+			},
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('系统错误!');
+            }
 		});
 	}
 
-	//获取单条测评结果
-	// function getSubjectRecordResultById(id) {
-	//     //清空二级列表数据
-     //    $('#towList').html('');
-	// 	$.ajax({
-	// 	//几个参数需要注意一下
-	// 		type: "POST",//方法类型
-	// 		dataType: "jsonp",//预期服务器返回的数据类型
-	// 		url: "http://140.143.237.60:8010/appraisal/getSubjectRecordResultById.json" ,//url
-	// 		data: {
-	// 			id:id
-	// 		},
-	// 		success: function (result) {
-	// 			//console.log(result);//打印服务端返回的数据(调试用)
-	// 			//$('.q_info').remove();
-	// 			//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
-	// 			$('body').html(`<a href="javascript:location.href = location.href + '&password=`+passwordConfig+`&showDiv=` + type + `';" class="weui-btn weui-btn_warn">关闭</a>姓名：` + IFNULL(result.name, '空') + `</br>性别：`
-	// 				+ IFNULL(result.sex, '空') + `</br>年龄：` + IFNULL(result.age, '空') + `</br>电话：` + IFNULL(result.phone, '空') +
-	// 				`</br>` + result.result + `<a href="javascript:location.href = location.href + '&password=`+passwordConfig+`&showDiv=` + type + `';" class="weui-btn weui-btn_warn">关闭</a>`);
-     //            //完成下拉刷新
-     //            $('.maxDiv').pullToRefreshDone();
-	// 		}
-	// 	});
-	// }
-
-
-	//展示首页
-    // function showHome(){
-     //    //隐藏二级列表
-     //    $('#towDiv').hide();
-     //    //展示一级列表
-     //    $('#oneDiv').show();
-    // }
 
     /**
 	 * 页面加载完成
@@ -249,7 +222,7 @@
             // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
 
 			if(type){
-                getList(type);
+                getList();
             }else{
                 //完成下拉刷新
                 $('.maxDiv').pullToRefreshDone();
@@ -258,8 +231,11 @@
 
         });
 
+        //添加并启动分页功能
+        WeuiUtils.startPager(getList);
+
 		//展示用户信息列表
-		getList(type);
+		getList();
 
 		//返回主页
 		$('#home').click(function(){
@@ -273,41 +249,15 @@
 
             offset = 0;
 
-            getList(type);
+            getList();
             return false;
 		})
 		//点击取消搜索
 		$('#searchCancel').click(function(){
 			$('#searchInputUserName').val('');
             offset = 0;
-            getList(type);
+            getList();
 		})
-
-
-
-		//分页
-		$('.pager-nav').click(function(){
-			$('#searchInputUserName').val('');
-
-			var pager = $(this).attr('pager');
-			if(pager == 'next'){
-                offset = offset+1;
-			}
-			if(pager == 'pre'){
-			    if(offset >= 1){
-                    offset = offset-1;
-                }else{
-			        return false;
-				}
-			}
-
-
-           // $('#searchBar').attr('class', 'weui-search-bar weui-search-bar_focusing');
-
-            getList(type);
-		})
-
-
 
 
 	})

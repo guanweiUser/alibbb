@@ -65,6 +65,13 @@
 				<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
 					<!-- 二级列表 -->
 				</div>
+
+				 <!-- 分页 -->
+				 <div id="weui_pager" style="margin-bottom: 88px;margin-top: 20px;">
+
+				 </div>
+				 <!-- 分页 -->
+
 			</div>
 		 </div>
 
@@ -125,6 +132,8 @@
 
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script src="../common/utils/commonUtils.js" type="text/javascript"></script>
+<script src="../common/utils/weuiUtils.js" type="text/javascript"></script>
+<script src="../common/utils/commonConfig.js" type="text/javascript"></script>
 <!-- 如果使用了某些拓展插件还需要额外的JS -->
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
@@ -137,17 +146,17 @@
 		//getCookie(loginStarus);
 
 	//获取二级列表数据
-	function getList(type) {
+	function getList() {
 	    //清空二级列表数据
         $('#towList').html('');
 		$.ajax({
 		//几个参数需要注意一下
 			type: "POST",//方法类型
 			dataType: "jsonp",//预期服务器返回的数据类型
-			url: "http://140.143.237.60:8010/appraisal/getSubjectRecordList.json" ,//url
+			url: Config.host + "appraisal/getSubjectRecordList.json" ,//url
 			data: {
-				limit:1000,
-				offset:0,
+                limit:limit,
+                offset:offset,
 				type:type,
 				ditch:ditch
 			},
@@ -194,7 +203,7 @@
 		//几个参数需要注意一下
 			type: "POST",//方法类型
 			dataType: "jsonp",//预期服务器返回的数据类型
-			url: "http://140.143.237.60:8010/appraisal/getSubjectRecordResultById.json" ,//url
+			url: Config.host + "appraisal/getSubjectRecordResultById.json" ,//url
 			data: {
 				id:id
 			},
@@ -272,7 +281,7 @@
             // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
 
 			if(type){
-                getList(type);
+                getList();
             }else{
                 //完成下拉刷新
                 $('.maxDiv').pullToRefreshDone();
@@ -289,13 +298,15 @@
             //展示二级列表
             $('#towDiv').show();
 
-            getList(type);
+            getList();
         }
         //自动登录
         if(password == passwordConfig){
             loginStarus = 'true';
 		}
 
+        //添加并启动分页功能
+        WeuiUtils.startPager(getList);
 
 
 	    //查看历史明细
@@ -307,7 +318,7 @@
 			//展示二级列表
 			$('#towDiv').show();
 			
-			getList(type);
+			getList();
 
 		})
 		//返回主页
