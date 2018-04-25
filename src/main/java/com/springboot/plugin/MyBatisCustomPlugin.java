@@ -120,7 +120,7 @@ public class MyBatisCustomPlugin extends PluginAdapter {
 
         XmlElement ifOffsetNotNullElement = new XmlElement("if");
         ifOffsetNotNullElement.addAttribute(new Attribute("test", "offset != null"));
-        ifOffsetNotNullElement.addElement(new TextElement("limit ${offset}, ${limit}"));
+        ifOffsetNotNullElement.addElement(new TextElement("limit ${offset*limit}, ${limit}"));
         ifLimitNotNullElement.addElement(ifOffsetNotNullElement);
 
         XmlElement ifOffsetNullElement = new XmlElement("if");
