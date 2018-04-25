@@ -47,7 +47,7 @@ class AliUserServiceImpl implements IAliUserService {
 
         String userName = aliUserVo.getUserName();
         if (StrUtil.isNotBlank(userName)){
-            aliUserExample.createCriteria().andUserNameLike("%"+userName.trim()+"%");
+            aliUserExample.createCriteria().andUserNameLike(userName.trim());
         }
 
         List<AliUser> aliUsers = aliUserMapper.selectByExample(aliUserExample);

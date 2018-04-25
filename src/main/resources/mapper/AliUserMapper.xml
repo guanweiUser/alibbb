@@ -90,7 +90,7 @@
     </if>
     <if test="limit != null">
       <if test="offset != null">
-        limit ${offset}, ${limit}
+        limit ${offset*limit}, ${limit}
       </if>
       <if test="offset == null">
         limit ${limit}
