@@ -48,17 +48,17 @@
 		 <div class="maxDiv" >
 
 			 <!-- body 顶部加上如下代码 -->
-			 <div class="weui-pull-to-refresh__layer">
-				 <div class='weui-pull-to-refresh__arrow'></div>
-				 <div class='weui-pull-to-refresh__preloader'></div>
-				 <div class="down">下拉刷新</div>
-				 <div class="up">释放刷新</div>
-				 <div class="refresh">正在刷新</div>
-			 </div>
+			 <!--<div class="weui-pull-to-refresh__layer">-->
+				 <!--<div class='weui-pull-to-refresh__arrow'></div>-->
+				 <!--<div class='weui-pull-to-refresh__preloader'></div>-->
+				 <!--<div class="down">下拉刷新</div>-->
+				 <!--<div class="up">释放刷新</div>-->
+				 <!--<div class="refresh">正在刷新</div>-->
+			 <!--</div>-->
 
 
 			 <div id="towDiv">
-				 <div class="weui-cells__title">姓名-性别-会员编号（下拉刷新）：</div>
+				 <div class="weui-cells__title">姓名-性别-会员编号：</div>
 				<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
 					<!-- 二级列表 -->
 				</div>
@@ -217,19 +217,19 @@
 
 
 
-        $('.maxDiv').pullToRefresh(function () {
-            // 下拉刷新触发时执行的操作放这里。
-            // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
-
-			if(type){
-                getList();
-            }else{
-                //完成下拉刷新
-                $('.maxDiv').pullToRefreshDone();
-			}
-
-
-        });
+        // $('.maxDiv').pullToRefresh(function () {
+        //     // 下拉刷新触发时执行的操作放这里。
+        //     // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
+        //
+			// if(type){
+        //         getList();
+        //     }else{
+        //         //完成下拉刷新
+        //         $('.maxDiv').pullToRefreshDone();
+			// }
+        //
+        //
+        // });
 
         //添加并启动分页功能
         WeuiUtils.startPager(getList);
