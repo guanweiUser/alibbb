@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  * @create: 2018-04-25 14:48
  **/
 /*RestControllerAdvice的值指定拦截的包名*/
-@ControllerAdvice(basePackages = {"com.springboot.alibb.web.controller"})
+//@ControllerAdvice(basePackages = {"com.springboot.alibb.web.controller"})
 public class JSONPConfiguration extends AbstractJsonpResponseBodyAdvice {
 
     public JSONPConfiguration() {
