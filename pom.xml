@@ -131,6 +131,16 @@
                             <mainClass>com.springboot.AlibbApplication</mainClass>
                         </manifest>
                     </archive>
+                    <!-- 打包需要排除的目录 -->
+                    <includes>
+                        <!--<include>**/static/*</include>-->
+                    </includes>
+
+                    <!-- 打包需要排除的文件 -->
+                    <excludes>
+                        <!--<exclude>core-site.xml</exclude>-->
+                        <!--<exclude>hdfs-site.xml</exclude>-->
+                    </excludes>
                 </configuration>
             </plugin>
 
