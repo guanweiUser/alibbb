@@ -25,13 +25,13 @@ var WeuiUtils = {
         //添加html
         $('#weui_pager').html(`<div class="pager">
                          <div class="pager-left" style="background-color: rgb(246, 244, 236);">
-                             <div class="pager-first" ><a class="pager-nav" pager="first">首页</a></div>
-                             <div class="pager-pre"  ><a class="pager-nav" pager="pre">上一页</a></div>
+                             <div class="pager-first" ><a href="#" class="pager-nav" pager="first">首页</a></div>
+                             <div class="pager-pre"  ><a href="#" class="pager-nav" pager="pre">上一页</a></div>
                          </div>
                          <div class="pager-cen" id="pager-cen">*/*</div>
                          <div class="pager-right" style="background-color: rgb(246, 244, 236);">
-                             <div class="pager-next"  ><a class="pager-nav" pager="next">下一页</a></div>
-                             <div class="pager-end" ><a class="pager-nav" pager="end">尾页</a></div>
+                             <div class="pager-next"  ><a href="#" class="pager-nav" pager="next">下一页</a></div>
+                             <div class="pager-end" ><a href="#" class="pager-nav" pager="end">尾页</a></div>
                          </div>
                      </div>`);
 
