@@ -1,5 +1,6 @@
 package com.springboot.alibb.service;
 
+import cn.hutool.json.JSONObject;
 import com.springboot.alibb.bean.AliUser;
 import com.springboot.alibb.bean.SubjectRecord;
 import com.springboot.alibb.web.vo.AliUserVo;
@@ -19,6 +20,6 @@ public interface IAliUserService {
      * @param aliUserVo
      * @return
      */
-    public List<AliUser> getAliUserList(AliUserVo aliUserVo);
+    public JSONObject getAliUserList(AliUserVo aliUserVo) throws Exception;
 
 }

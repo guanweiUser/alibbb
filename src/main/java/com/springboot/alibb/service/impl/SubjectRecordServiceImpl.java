@@ -46,7 +46,6 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
     public String addSubjectRecord(SubjectRecordVo subjectRecordVo) {
 
 
-
         //最终返回结果
         String resultHtml = "";
 
@@ -122,7 +121,7 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
      * @return
      */
     @Override
-    public List<SubjectRecord> getSubjectRecordList(SubjectRecordVo subjectRecordVo) {
+    public JSONObject getSubjectRecordList(SubjectRecordVo subjectRecordVo) throws Exception {
 
         String ditch = subjectRecordVo.getDitch();
         String type = subjectRecordVo.getType();
@@ -135,9 +134,19 @@ class SubjectRecordServiceImpl implements ISubjectRecordService {
         subjectRecordExample.setCustomField("id,name,phone,sex,age,create_time");
 
         subjectRecordExample.createCriteria().andDitchEqualTo(ditch).andTypeEqualTo(type);
-        subjectRecordExample.setOrderByClause("create_time DESC");
+        long total = subjectRecordMapper.countByExample(subjectRecordExample);
 
-        return subjectRecordMapper.selectByExample(subjectRecordExample);
+        subjectRecordExample.setOrderByClause("create_time DESC");
+        JSONObject resultJson = new JSONObject();
+        List<SubjectRecord> subjectRecords = subjectRecordMapper.selectByExample(subjectRecordExample);
+
+        resultJson.put("data", subjectRecords);
+        resultJson.put("total", total);
+        resultJson.put("offset", subjectRecordVo.getOffset());
+        resultJson.put("limit", subjectRecordVo.getLimit());
+
+
+        return resultJson;
     }
 
     /**

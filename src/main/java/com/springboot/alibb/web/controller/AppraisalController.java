@@ -67,7 +67,7 @@ public class AppraisalController extends BaseController {
             subjectRecordVo.setBrowserInfo(this.getBrowserInfo(request));
 
             //解析测评 获取结果 存储测评信息 返回测评结果
-            return subjectRecordVo.getCallback() + "(" + JSONUtil.parseArray(subjectRecordService.getSubjectRecordList(subjectRecordVo)).toString() + ")";
+            return subjectRecordVo.getCallback() + "(" + subjectRecordService.getSubjectRecordList(subjectRecordVo).toString() + ")";
 
         } catch (Exception e) {
             e.printStackTrace();

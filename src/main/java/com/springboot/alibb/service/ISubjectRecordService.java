@@ -1,5 +1,6 @@
 package com.springboot.alibb.service;
 
+import cn.hutool.json.JSONObject;
 import com.springboot.alibb.bean.SubjectRecord;
 import com.springboot.alibb.web.vo.SubjectRecordVo;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public interface ISubjectRecordService {
      * @param subjectRecordVo
      * @return
      */
-    public List<SubjectRecord> getSubjectRecordList(SubjectRecordVo subjectRecordVo);
+    public JSONObject getSubjectRecordList(SubjectRecordVo subjectRecordVo) throws Exception;
 
     /**
      * 查看某人测评结果信息

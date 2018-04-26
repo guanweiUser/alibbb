@@ -52,7 +52,7 @@ public class AliUserController extends BaseController {
 //            return JSONUtil.parseArray(iAliUserService.getAliUserList(aliUserVo)).toString();
 
             String callback = aliUserVo.getCallback();
-            String result = JSONUtil.parseArray(iAliUserService.getAliUserList(aliUserVo)).toString();
+            String result = iAliUserService.getAliUserList(aliUserVo).toString();
             //判断是否为jsonp调用
             if (StrUtil.isBlank(callback)) {
                 return result;
