@@ -165,8 +165,15 @@
 				//$('.q_info').remove();
 				//$('#testform').append('<div class="q_info" style="display: block;" >' + result.html.replace(/@xiaoyu/g,'<').replace(/@dayu/g,'>') + '</div>');
 
+
+                var data,total;
+                if(result){
+                    data = result.data;
+                    total = result.total;
+                }
+				console.info(data)
                 var defStr = '空';
-                if(!result || result.length == 0){	//暂无填报记录
+                if(!data || data.length == 0){	//暂无填报记录
                     $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
 											<div class="weui-cell__hd"></div>
 											<div class="weui-cell__bd">
@@ -176,8 +183,8 @@
 										  </a>`);
 				}else{
 
-                    for(ind in result){	//展示二级列表信息
-                        var record = result[ind];
+                    for(ind in data){	//展示二级列表信息
+                        var record = data[ind];
                         $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:getSubjectRecordResultById('`+record.id+`');">
 											<div class="weui-cell__hd"></div>
 											<div class="weui-cell__bd">
@@ -189,6 +196,13 @@
 
                     }
                 }
+
+
+                //设置页数
+                WeuiUtils.setPagerCen(total);
+
+
+
                 //完成下拉刷新
                 $('.maxDiv').pullToRefreshDone();
 			}
