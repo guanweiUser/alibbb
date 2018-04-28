@@ -22,17 +22,22 @@
  <body ontouchstart="" style="background-color: rgb(246, 244, 236);">
 	 <div class="weui-tab">
 
+		 <header class="demos-header">
+			 <h1 class="demos-title" id="home" style="font-size: 2em;">会员查询系统</h1>
+			 <!--<h5 class="demos-title" id="home">测评后台</h5>-->
+		 </header>
+
 		 <!-- 搜索功能Start -->
 		 <div class="weui-search-bar" id="searchBar">
 			 <div class="weui-search-bar__form">
 				 <div class="weui-search-bar__box">
 					 <i class="weui-icon-search"></i>
-					 <input type="search" class="weui-search-bar__input" id="searchInputUserName" name="userName" placeholder="搜索" required="">
+					 <input type="search" class="weui-search-bar__input" id="searchInputUserName" name="userName" placeholder="请输入需要查询的姓名" required="">
 					 <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
 				 </div>
 				 <label class="weui-search-bar__label" id="searchText">
 					 <i class="weui-icon-search"></i>
-					 <span>搜索</span>
+					 <span>请输入需要查询的姓名</span>
 				 </label>
 			 </div>
 			 <a href="javascript:" class="weui-search-bar__cancel-btn" id="search">搜索</a>
@@ -41,15 +46,13 @@
 		 <!-- 搜索功能End -->
 
 
-		 <header class="demos-header">
-			 <h1 class="demos-title" id="home" style="font-size: 2em;">会员查询系统</h1>
-			 <!--<h5 class="demos-title" id="home">测评后台</h5>-->
-		 </header>
+
 		 <div class="maxDiv" >
 
 			 <div id="towDiv">
 				 <div class="weui-cells__title">姓名-会员编号：</div>
 				<div id="towList" class="weui-cells" style="background-color: rgb(246, 244, 236);">
+					<!--<h1 align="center" style="color: #3cc51f">请输入需要查询的会员姓名</h1>-->
 					<!-- 二级列表 -->
 				</div>
 
@@ -63,12 +66,32 @@
 
 	 </div>
 
+	 <div id="info_popup" class="weui-popup__container">
+		 <div class="weui-popup__overlay"></div>
+		 <div class="weui-popup__modal" align="center">
+			 </br>
+			 </br>
+			 </br>
+			 </br>
+			 </br>
+			 </br>
+			 <img width="310" id="info_popup_img" onerror="this.src='images/avatar/lfsxlwsxh_default.jpg';this.onerror=null" src="images/avatar/lfsxlwsxh_LXWX0001B.jpg" alt="张阳">
+			 </br>
+		 <h3 id="info_popup_name">姓名：张某某</h3>
+		 <h3 id="info_popup_code">会员编号：WJD1547545</h3>
+			 </br>
+			 </br>
+			 <a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
+		 </div>
+	 </div>
+
+
 	 <!-- Footer底部页脚START -->
-	 <div class="weui-footer weui-footer_fixed-bottom">
+	 <div id="info_popup" class="weui-footer weui-footer_fixed-bottom">
 		 <p class="weui-footer__links">
-			 <a href="list.html" id="listHtml" class="weui-footer__link">测评</a>
+			 <a href="list.html" id="listHtml?ditch=lfsxlwsxh" class="weui-footer__link">首页</a>
 			 <a href="javascript:showHome();" class="weui-footer__link">会员查询</a>
-			 <a href="manager.html" class="weui-footer__link">后台管理</a>
+			 <a href="manager.html?ditch=lfsxlwsxh" class="weui-footer__link">后台管理</a>
 		 </p>
 		 <p class="weui-footer__text">Copyright © 2018-2021 alibbb.com.cn</p>
 	 </div>
@@ -163,7 +186,7 @@
                     $('#towList').append(`	  <a class="weui-cell weui-cell_access" href="javascript:;">
 											<div class="weui-cell__hd"></div>
 											<div class="weui-cell__bd">
-											  <p>暂会员记录</p>
+											  <p>暂无会员记录</p>
 											</div>
 											<div class="weui-cell__ft">`+new Date().Format("MM-dd hh:mm:ss ")+`</div>
 										  </a>`);
@@ -173,9 +196,9 @@
                         var record = data[ind];
 
                         $('#towList').append(`<div class="weui-panel__bd">
-							  <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="margin-left: 16px;">
+							  <a href="javascript:$('#info_popup_name').text('姓名：`+IFNULL(record.userName,defStr)+`');$('#info_popup_code').text('会员编号：`+IFNULL(record.userCode,defStr)+`');$('#info_popup_img').attr('src','images/avatar/lfsxlwsxh_`+IFNULL(record.userCode,'default')+`.jpg');$('#info_popup').popup();" class="weui-media-box weui-media-box_appmsg open-popup" data-target="info_popup" style="margin-left: 16px;">
 								<div class="weui-media-box__hd" style="overflow: hidden;height: 90px;width: 80px; ">
-								  		<img class="weui-media-box__thumb" style="max-height: 130%;margin-top: -10px;max-width: 120%;" src="images/avatar/clipboard.jpg" alt="`+IFNULL(record.userName,defStr)+`">
+								  		<img class="weui-media-box__thumb" style="max-height: 130%;margin-top: -10px;max-width: 120%;" onerror="this.src='images/avatar/lfsxlwsxh_default.jpg';this.onerror=null" src="images/avatar/lfsxlwsxh_`+IFNULL(record.userCode,'default')+`.jpg" alt="`+IFNULL(record.userName,defStr)+`">
 								</div>
 								<div class="weui-media-box__bd">
 								  <h4 class="weui-media-box__title">`+IFNULL(record.userName,defStr)+`</h4>
@@ -208,12 +231,12 @@
         WeuiUtils.startPager(getList);
 
 		//展示用户信息列表
-		getList();
+		//getList();
 
 		//返回主页
-		$('#home').click(function(){
-            showHome();
-		})
+		// $('#home').click(function(){
+         //    showHome();
+		// })
 
 		//点击搜索
 		$('#search').click(function(){

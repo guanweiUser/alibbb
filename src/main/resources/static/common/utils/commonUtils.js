@@ -80,4 +80,12 @@ function clearCookie(name) {
     setCookie(name, "", -1);
 }
 
-
+/**
+ * 去除空格
+ * @param str
+ * @returns {string | void}
+ * @constructor
+ */
+function Trim(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
