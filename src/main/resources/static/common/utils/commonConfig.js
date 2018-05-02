@@ -4,7 +4,7 @@
  */
 var Config = {
      host:'https://api.alibbb.com.cn/',
-     ApiHost:'https://api.alibbb.com.cn/',
+     ApiHost:'https://api.alibbb.com.cn/'
      // host:'http://140.143.237.60:8010/'
     // host:'http://127.0.0.1:8010/'
 }
