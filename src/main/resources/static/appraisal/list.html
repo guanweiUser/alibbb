@@ -78,6 +78,7 @@
 <!-- body 最后 -->
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="../common/utils/commonUtils.js"></script>
+<script src="../common/utils/commonConfig.js"></script>
 <script>
 
     //获取渠道参数
@@ -132,7 +133,7 @@
 		//几个参数需要注意一下
 			type: "POST",//方法类型
 			dataType: "jsonp",//预期服务器返回的数据类型
-			url: "http://140.143.237.60:8010/appraisal/getSubjectRecordList.json" ,//url
+			url: Config.ApiHost + "appraisal/getSubjectRecordList.json" ,//url
 			data: {
 				limit:1000,
 				offset:0,
