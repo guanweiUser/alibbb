@@ -75,10 +75,10 @@
 			 </br>
 			 </br>
 			 </br>
-			 <img width="310" id="info_popup_img" onerror="this.src='images/avatar/lfsxlwsxh_default.jpg';this.onerror=null" src="images/avatar/lfsxlwsxh_LXWX0001B.jpg" alt="张阳">
+			 <img width="310" id="info_popup_img" onerror="this.src='images/avatar/lfsxlwsxh_default.jpg';this.onerror=null" src="images/avatar/lfsxlwsxh_default.jpg" alt="照片">
 			 </br>
-		 <h3 id="info_popup_name">姓名：张某某</h3>
-		 <h3 id="info_popup_code">会员编号：WJD1547545</h3>
+		 <h3 id="info_popup_name">姓名：XXX</h3>
+		 <h3 id="info_popup_code">会员编号：XXXXXXXXX</h3>
 			 </br>
 			 </br>
 			 <a href="javascript:;" class="weui-btn weui-btn_primary close-popup">关闭</a>
@@ -167,7 +167,7 @@
 		//几个参数需要注意一下
 			type: "POST",//方法类型
 			dataType: "jsonp",//预期服务器返回的数据类型
-            url: Config.host + "user/getAliUserList.json?time=" + Date.parse(new Date()),//url
+            url: Config.ApiHost + "user/getAliUserList.json?time=" + Date.parse(new Date()),//url
 			data: {
 				limit:limit,
 				offset:offset,
@@ -229,14 +229,6 @@
 
         //添加并启动分页功能
         WeuiUtils.startPager(getList);
-
-		//展示用户信息列表
-		//getList();
-
-		//返回主页
-		// $('#home').click(function(){
-         //    showHome();
-		// })
 
 		//点击搜索
 		$('#search').click(function(){
